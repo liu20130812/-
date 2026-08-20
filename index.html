@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>爱摄影的小刘 | 个人科幻主页</title>
-    <!-- 浏览器标签页图标 -->
+    <title>爱摄影的小刘 | 全新个人主页</title>
     <link rel="icon" href="https://p4.a.yximgs.com/uhead/AB/2026/01/27/21/BMjAyNjAxMjcyMTA5MDNfMzg0NjE4MTA1M18yX2hkNDk2XzczNg==_s.jpg" type="image/jpeg">
     <style>
         * {
@@ -19,15 +18,9 @@
         }
 
         body {
-            color: #fff;
+            background-color: #060913;
+            color: #e6edf7;
             overflow-x: hidden;
-            min-height: 100vh;
-            background:
-                radial-gradient(circle at 10% 10%, rgba(0, 204, 255, 0.08), transparent 25%),
-                radial-gradient(circle at 90% 20%, rgba(123, 97, 255, 0.08), transparent 28%),
-                radial-gradient(circle at 50% 90%, rgba(0, 180, 255, 0.06), transparent 30%),
-                linear-gradient(135deg, #050814 0%, #0a0f22 45%, #050814 100%);
-            background-attachment: fixed;
         }
 
         #particles-canvas {
@@ -39,20 +32,20 @@
             z-index: -1;
         }
 
-        .navbar {
+        .nav {
+            width: 100%;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            padding: 18px 50px;
-            backdrop-filter: blur(22px);
-            background: rgba(10, 15, 35, 0.25);
-            border-bottom: 1px solid rgba(0, 180, 255, 0.15);
+            padding: 16px 40px;
+            background: rgba(12, 17, 31, 0.75);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(100, 180, 255, 0.12);
             z-index: 999;
         }
 
-        .nav-container {
-            max-width: 1200px;
+        .nav-wrap {
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -60,138 +53,129 @@
         }
 
         .nav-logo {
-            font-size: 22px;
-            font-weight: bold;
-            background: linear-gradient(90deg, #00ccff, #7b61ff);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 40px;
+            font-size: 20px;
+            color: #82cfff;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .nav-menu a {
-            color: rgba(199, 224, 245, 0.85);
+            color: #b4c8e8;
             text-decoration: none;
-            font-size: 16px;
-            transition: 0.3s ease;
+            margin-left: 32px;
+            font-size: 15px;
+            transition: 0.3s;
             position: relative;
         }
 
         .nav-menu a:hover {
-            color: #00ccff;
+            color: #4fc3f7;
         }
 
         .nav-menu a::after {
-            content: '';
+            content: "";
             position: absolute;
-            bottom: -5px;
             left: 0;
+            bottom: -4px;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #00ccff, #7b61ff);
-            transition: 0.3s ease;
+            background: #4fc3f7;
+            transition: 0.3s;
         }
 
         .nav-menu a:hover::after {
             width: 100%;
         }
 
-        .container {
-            max-width: 1200px;
+        .main {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 120px 20px 100px;
+            padding: 130px 25px 80px;
         }
 
-        .content-wrapper {
-            background: transparent;
-            padding: 0;
-            border: none;
-            box-shadow: none;
-        }
-
-        .title {
-            font-size: 48px;
+        .hero {
             text-align: center;
-            background: linear-gradient(90deg, #00ccff, #7b61ff);
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 15px;
-            text-shadow: 0 0 30px rgba(0, 204, 255, 0.35);
+            margin-bottom: 80px;
         }
 
-        .sub-title {
-            text-align: center;
-            color: rgba(148, 184, 216, 0.9);
-            font-size: 20px;
-            margin-bottom: 60px;
+        .hero h1 {
+            font-size: 44px;
+            color: #ffffff;
+            margin-bottom: 12px;
         }
 
-        .intro-block {
-            margin-bottom: 20px;
+        .hero p {
+            color: #94b8e0;
+            font-size: 18px;
         }
 
-        .intro-block h3 {
-            font-size: 26px;
-            color: #63d8ff;
-            margin: 45px 0 22px;
-            text-shadow: 0 0 18px rgba(99, 216, 255, 0.25);
-        }
-
-        .intro-block p {
-            line-height: 2.1;
-            color: rgba(199, 224, 245, 0.92);
-            font-size: 17px;
-            margin-bottom: 20px;
-        }
-
-        .link-group {
-            margin-top: 60px;
-            display: flex;
-            gap: 28px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .link-btn {
-            padding: 15px 38px;
-            border-radius: 32px;
-            border: 1px solid rgba(0, 180, 255, 0.32);
-            color: #00d0ff;
-            text-decoration: none;
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(100, 180, 255, 0.08);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 30px;
             transition: 0.3s ease;
-            background: rgba(0, 180, 255, 0.06);
-            font-size: 16px;
-            box-shadow: 0 0 12px rgba(0, 180, 255, 0.10);
-            backdrop-filter: blur(10px);
         }
 
-        .link-btn:hover {
-            background: rgba(0, 180, 255, 0.16);
-            box-shadow: 0 0 24px rgba(0, 180, 255, 0.22);
-            transform: translateY(-3px);
+        .card:hover {
+            border-color: rgba(100, 180, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .card h2 {
+            color: #72d0ff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card p {
+            color: #c9e0f5;
+            line-height: 2;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .link-box {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .link-box a {
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: 1px solid #4fc3f750;
+            color: #82cfff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .link-box a:hover {
+            background: #4fc3f718;
+            box-shadow: 0 0 15px #4fc3f733;
         }
 
         footer {
             text-align: center;
-            margin-top: 80px;
-            color: rgba(112, 136, 160, 0.75);
+            margin-top: 60px;
+            color: #7088a0;
             font-size: 14px;
         }
 
-        @media (max-width: 600px) {
-            .navbar {
+        @media (max-width: 700px) {
+            .nav {
                 padding: 15px 20px;
             }
-
-            .nav-menu {
-                gap: 20px;
+            .nav-menu a {
+                margin-left: 15px;
             }
-
-            .title {
+            .hero h1 {
                 font-size: 32px;
+            }
+            .card {
+                padding: 25px;
             }
         }
     </style>
@@ -199,145 +183,111 @@
 <body>
     <canvas id="particles-canvas"></canvas>
 
-    <nav class="navbar">
-        <div class="nav-container">
+    <div class="nav">
+        <div class="nav-wrap">
             <div class="nav-logo">小刘个人主页</div>
             <div class="nav-menu">
+                <a href="#notice">公告</a>
                 <a href="#about">关于我</a>
                 <a href="#photo">摄影爱好</a>
-                <a href="#security">电脑安全</a>
+                <a href="#safe">电脑安全</a>
                 <a href="#contact">联系方式</a>
             </div>
         </div>
-    </nav>
+    </div>
 
-    <div class="container">
-        <div class="content-wrapper">
-            <h1 class="title">爱摄影的小刘</h1>
-            <p class="sub-title">热爱镜头光影 | 探索数字安全 | 保持热爱，持续前行</p>
+    <div class="main">
+        <div class="hero">
+            <h1>爱摄影的小刘</h1>
+            <p>热爱光影记录 · 深耕网络安全 · 保持热爱 稳步前行</p>
+        </div>
 
-            <div class="intro-block">
-                <h3 id="about">✨ 关于我</h3>
-                <p>大家好，我是爱摄影的小刘。我是一名同时热爱摄影与计算机技术的爱好者，习惯于在现实风景与虚拟数字世界之间来回探索。我始终认为，热爱不需要被局限，喜欢的事物都值得投入时间慢慢钻研。</p>
-                <p>平日里，我喜欢走出房间，去往城市街道、郊外山野，用镜头捕捉转瞬即逝的画面。在我眼里，摄影不只是简单按下快门，而是学会观察光线、感受氛围，读懂画面背后的情绪。无论是晴朗白昼的自然风光，还是傍晚充满烟火气息的城市街道，都值得被记录保存。</p>
-                <p>除去摄影之外，我对计算机领域抱有浓厚兴趣，尤其偏向电脑安全方向。闲暇时间我会主动学习系统知识、网络基础、个人设备防护等内容。我喜欢探索数字世界背后的运行逻辑，不断积累相关知识，提升自己对计算机的理解。</p>
-                <p>我是一个愿意持续学习、乐于交流的人。不管是摄影拍摄技巧、调色思路，还是电脑相关技术问题，只要你感兴趣，我们都可以互相交流探讨。我期待能够认识更多志同道合的朋友，一起交流爱好，彼此分享经验，共同进步。</p>
-                <p>生活漫长，我希望一直保持好奇心，一边奔赴山野捕捉光影，一边深耕数字领域学习技术，在两大爱好之中找到属于自己的节奏，稳步成长。</p>
-            </div>
+        <!-- 独立公告板块，放在关于我上方 -->
+        <div class="card" id="notice">
+            <h2>📢 网站公告</h2>
+            <p>网站功能已全部恢复，欢迎访问！</p>
+        </div>
 
-            <div class="intro-block">
-                <h3 id="photo">📷 摄影爱好 | 捕捉光影，记录人间百态</h3>
-                <p>摄影是陪伴我很久的爱好，也是我表达情绪、观察世界的方式。相比追求专业复杂的商业创作，我更偏爱纪实、风光类随拍，专注记录真实自然的画面。</p>
-                <p>我热衷于捕捉自然光影变化，清晨柔和的晨光、黄昏绚烂的晚霞、山间流动的云雾、城市街头的行人，都是我镜头下的素材。拍摄的时候，我会不断留意构图、光线角度，尝试寻找独特视角，让普通场景拥有不一样的氛围感。</p>
-                <p>拍完照片之后，我也会进行后期调色，调整画面光影、色彩氛围，还原拍摄时肉眼感受到的现场氛围。在不断拍摄与复盘的过程中，我的审美与拍摄能力也在慢慢提升。</p>
-                <p>对我而言，每一张照片都承载着一段回忆。多年以后再次翻看照片，能够重新想起当时所处的环境、当下的心情，这也是摄影最珍贵的意义。未来我也会继续带上设备，去往更多地方，记录更多风景与故事。</p>
-            </div>
+        <div class="card" id="about">
+            <h2>✨ 关于我</h2>
+            <p>大家好，我是小刘，一名同时热爱摄影与网络安全技术的爱好者。在日常的生活当中，我善于去发现身边那些容易被忽略的美好瞬间，喜欢拿着设备出门四处走走，用镜头记录现实世界里各种各样的风景与人情。</p>
+            <p>除了摄影之外，我对计算机相关领域抱有浓厚的兴趣，会利用空余时间自学电脑相关知识，一点点积累技术经验。我性格乐于交流，愿意和同好互相分享想法，不管是摄影拍摄技巧，还是电脑技术问题，都欢迎一起探讨。</p>
+            <p>我始终带着好奇心去看待事物，一边感受现实世界的烟火风光，一边探索数字世界的奇妙，不断学习新东西，一点点提升自己，希望可以认识更多志同道合的朋友。</p>
+        </div>
 
-            <div class="intro-block">
-                <h3 id="security">💻 电脑安全 | 探索数字世界，学习防护知识</h3>
-                <p>计算机与电脑安全是我的另一大兴趣方向。随着互联网不断发展，网络安全变得越来越重要，也吸引着我不断深入学习相关知识。</p>
-                <p>现阶段我属于爱好者水平，略懂电脑安全相关内容。日常学习方向包含电脑系统优化、个人隐私防护、恶意程序基础识别、网络基础原理、设备安全加固等实用内容。我坚持合法合规学习所有技术，只研究网络防护思路，拒绝一切违规操作。</p>
-                <p>在学习过程中，我慢慢理解网络运行逻辑，了解各类常见安全隐患，学会如何保护自己的设备、账号隐私。遇到电脑相关问题时，我也会主动查阅资料、动手测试，不断积累实战经验。</p>
-                <p>计算机领域知识浩瀚，我还有非常多内容需要学习。我会保持耐心，循序渐进提升自己的技术认知，持续探索数字世界的奥秘。如果你同样喜欢电脑技术、网络安全，欢迎一起交流学习。</p>
-            </div>
+        <div class="card" id="photo">
+            <h2>📷 摄影爱好</h2>
+            <p>摄影是我长期坚持的爱好，也是我观察世界、记录生活的方式。我偏爱风光、纪实类拍摄，喜欢捕捉清晨、黄昏、城市与山野的自然瞬间。</p>
+            <p>从构图、取景到后期调色，我一直在不断学习打磨。对我来说，摄影不只是拍照，更是留存回忆、治愈生活的一种方式。每一张照片，都是独属于当下的温柔与风景。外出游玩、日常散步的时候，我都会习惯性留意眼前的画面，努力把转瞬即逝的景色定格下来。</p>
+        </div>
 
-            <div class="intro-block">
-                <h3 id="contact">🌐 我的社交链接</h3>
-                <p>如果你想欣赏我的摄影作品、交流拍摄心得，或是探讨电脑相关技术问题，可以通过下方链接找到我。欢迎各位朋友前来交流、互相学习！</p>
-                <div class="link-group">
-                    <a href="https://github.com/liu20130812/-" target="_blank" class="link-btn">GitHub</a>
-                    <a href="https://www.kuaishou.com/profile/3xuypsbn2adtfj9?source=NewReco" target="_blank" class="link-btn">快手主页</a>
-                </div>
+        <div class="card" id="safe">
+            <h2>💻 电脑安全</h2>
+            <p>网络安全是我的另一大兴趣方向。日常学习个人设备防护、网络基础、系统优化、隐私安全等实用知识，坚持合法合规学习技术。</p>
+            <p>我不断积累网络安全认知，学习规避网络风险、保护个人隐私与设备安全，专注正向网络技术研究，持续深耕，稳步提升自己的技术认知。平时也会折腾电脑系统，研究设备维护、排查各类小故障，把学到的知识运用到实际使用当中。</p>
+        </div>
+
+        <div class="card" id="contact">
+            <h2>🌐 社交链接</h2>
+            <p>如果你喜欢摄影、爱好数码、想交流电脑技术与网络安全，欢迎通过下方链接关注、交流、学习！</p>
+            <div class="link-box">
+                <a href="https://github.com/liu20130812/-" target="_blank">GitHub</a>
+                <a href="https://www.kuaishou.com/profile/3xuypsbn2adtfj9?source=NewReco" target="_blank">快手主页</a>
             </div>
         </div>
 
-        <footer>© 2026 爱摄影的小刘 | 个人科幻主页 版权所有</footer>
+        <footer>© 2026 爱摄影的小刘 | 全新改版个人主页</footer>
     </div>
 
     <script>
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
+        const canvas = document.getElementById("particles-canvas");
+        const ctx = canvas.getContext("2d");
         let w, h;
-        let particles = [];
+        let particlesArr = [];
 
-        function resizeCanvas() {
+        function resize() {
             w = canvas.width = window.innerWidth;
             h = canvas.height = window.innerHeight;
         }
-
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+        resize();
+        window.addEventListener("resize", resize);
 
         class Particle {
             constructor() {
                 this.x = Math.random() * w;
                 this.y = Math.random() * h;
-                this.radius = Math.random() * 2.4 + 0.25;
-                this.speedX = (Math.random() - 0.5) * 0.75;
-                this.speedY = (Math.random() - 0.5) * 0.75;
-                this.color = Math.random() > 0.62
-                    ? 'rgba(123, 97, 255, 0.72)'
-                    : 'rgba(0, 190, 255, 0.62)';
+                this.r = Math.random() * 1.8 + 0.2;
+                this.sx = (Math.random() - 0.5) * 0.4;
+                this.sy = (Math.random() - 0.5) * 0.4;
+                this.color = Math.random() > 0.5 ? "rgba(79,195,247,0.5)" : "rgba(120,160,255,0.45)";
             }
-
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x < 0 || this.x > w) this.speedX *= -1;
-                if (this.y < 0 || this.y > h) this.speedY *= -1;
+                this.x += this.sx;
+                this.y += this.sy;
+                if(this.x < 0 || this.x > w) this.sx *= -1;
+                if(this.y < 0 || this.y > h) this.sy *= -1;
             }
-
             draw() {
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
                 ctx.fillStyle = this.color;
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = this.color;
                 ctx.fill();
-                ctx.shadowBlur = 0;
             }
         }
 
-        function createParticles(num) {
-            particles = [];
-            for (let i = 0; i < num; i++) {
-                particles.push(new Particle());
-            }
+        for(let i = 0; i < 320; i++){
+            particlesArr.push(new Particle());
         }
 
-        createParticles(380);
-
-        function animate() {
-            ctx.clearRect(0, 0, w, h);
-            particles.forEach(p => {
+        function animate(){
+            ctx.clearRect(0,0,w,h);
+            particlesArr.forEach(p=>{
                 p.update();
                 p.draw();
             });
             requestAnimationFrame(animate);
         }
-
         animate();
-
-        // 导航点击平滑滚动，标题完整露出不被导航遮挡
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                const targetEl = document.querySelector(targetId);
-
-                if (!targetEl) return;
-
-                const navHeight = document.querySelector('.navbar').offsetHeight;
-                const scrollPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
-
-                window.scrollTo({
-                    top: scrollPosition,
-                    behavior: 'smooth'
-                });
-            });
-        });
     </script>
 </body>
 </html>
