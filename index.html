@@ -1,301 +1,273 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>爱摄影的小刘 | 个人主页</title>
-    <link rel="icon" href="https://p4.a.yximgs.com/uhead/AB/2026/01/27/21/BMjAyNjAxMjcyMTA5MDNfMzg0NjE4MTA1M18yX2hkNDk2XzczNg==_s.jpg" type="image/jpeg">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft Yahei", sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: #060913;
-            color: #e6edf7;
-            overflow-x: hidden;
-        }
-
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .nav {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding: 16px 40px;
-            background: rgba(12, 17, 31, 0.75);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(100, 180, 255, 0.12);
-            z-index: 999;
-        }
-
-        .nav-wrap {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 20px;
-            color: #82cfff;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .nav-menu a {
-            color: #b4c8e8;
-            text-decoration: none;
-            margin-left: 32px;
-            font-size: 15px;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .nav-menu a:hover {
-            color: #4fc3f7;
-        }
-
-        .nav-menu a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 0;
-            height: 2px;
-            background: #4fc3f7;
-            transition: 0.3s;
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        .main {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 130px 25px 80px;
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .hero h1 {
-            font-size: 44px;
-            color: #ffffff;
-            margin-bottom: 12px;
-        }
-
-        .hero p {
-            color: #94b8e0;
-            font-size: 18px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(100, 180, 255, 0.08);
-            border-radius: 16px;
-            padding: 35px;
-            margin-bottom: 30px;
-            transition: 0.3s ease;
-        }
-
-        .card:hover {
-            border-color: rgba(100, 180, 255, 0.2);
-            transform: translateY(-4px);
-        }
-
-        .card h2 {
-            color: #72d0ff;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .card p {
-            color: #c9e0f5;
-            line-height: 2;
-            font-size: 16px;
-            margin-bottom: 16px;
-        }
-
-        .link-box {
-            margin-top: 40px;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .link-box a {
-            padding: 12px 30px;
-            border-radius: 30px;
-            border: 1px solid #4fc3f750;
-            color: #82cfff;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .link-box a:hover {
-            background: #4fc3f718;
-            box-shadow: 0 0 15px #4fc3f733;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            color: #7088a0;
-            font-size: 14px;
-        }
-
-        @media (max-width: 700px) {
-            .nav {
-                padding: 15px 20px;
-            }
-            .nav-menu a {
-                margin-left: 15px;
-            }
-            .hero h1 {
-                font-size: 32px;
-            }
-            .card {
-                padding: 25px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>常用软件导航 · 一键直达官网</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<style>
+    :root{
+        --ink:#1c2733;
+        --muted:#5c6b7a;
+        --line:#e3e9f0;
+        --bg:#f4f7fb;
+        --card:#ffffff;
+        --primary:#2f54d0;
+        --primary-ink:#1e3bb8;
+        --ok:#12a150;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+        font-family:"Noto Sans SC",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+        background:var(--bg);
+        color:var(--ink);
+        line-height:1.5;
+    }
+    /* ===== Hero ===== */
+    .hero{
+        position:relative;
+        background:
+            linear-gradient(180deg,rgba(244,247,251,0) 0%,var(--bg) 78%),
+            url("https://aka.doubaocdn.com/s/lreIvAG1k2") center 22%/cover no-repeat;
+        padding:64px 20px 40px;
+        text-align:center;
+        overflow:hidden;
+    }
+    .hero-inner{max-width:880px;margin:0 auto;}
+    .hero .kicker{
+        display:inline-flex;align-items:center;gap:8px;
+        background:#fff;border:1px solid var(--line);border-radius:999px;
+        padding:7px 16px;font-size:14px;color:var(--primary-ink);font-weight:500;
+        box-shadow:0 2px 10px rgba(20,40,90,.06);
+    }
+    .hero h1{
+        font-size:clamp(30px,5vw,46px);font-weight:900;letter-spacing:.5px;
+        margin:18px 0 12px;color:#14223c;
+    }
+    .hero h1 span{color:var(--primary);}
+    .hero p.sub{font-size:clamp(15px,2vw,17px);color:var(--muted);max-width:620px;margin:0 auto;}
+    .hero .statbar{
+        display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:26px;
+    }
+    .hero .statbar span{
+        background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;
+        padding:8px 16px;font-size:14px;color:#33404f;box-shadow:0 2px 8px rgba(20,40,90,.05);
+    }
+    /* ===== 安全提示 ===== */
+    .safe-tip{
+        max-width:880px;margin:6px auto 0;padding:0 20px;
+    }
+    .safe-tip .box{
+        background:#eefaf3;border:1px solid #c8ecd7;border-radius:14px;
+        padding:14px 18px;display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:#0d5c33;
+    }
+    .safe-tip svg{flex:none;margin-top:2px;}
+    /* ===== 分类区 ===== */
+    .wrap{max-width:1040px;margin:36px auto 10px;padding:0 20px;}
+    .group{margin-bottom:34px;}
+    .group-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+    .group-icon{
+        width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex:none;
+        color:#fff;
+    }
+    .group-head h2{font-size:20px;font-weight:700;color:#1a2a3f;}
+    .group-head .count{font-size:13px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:2px 10px;border-radius:999px;}
+    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
+    .card{
+        background:var(--card);border:1px solid var(--line);border-radius:16px;
+        padding:18px;display:flex;flex-direction:column;gap:14px;
+        transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+        position:relative;
+    }
+    .card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(20,40,90,.10);border-color:#cdd9ec;}
+    .card-top{display:flex;align-items:center;gap:12px;}
+    .app-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:#fff;flex:none;}
+    .app-name{font-size:17px;font-weight:700;color:#16233a;line-height:1.2;}
+    .app-desc{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.4;}
+    .badge{
+        display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;
+        color:var(--ok);background:#eaf8f0;border:1px solid #c9ecd8;padding:2px 8px;border-radius:999px;flex:none;
+    }
+    .card .domain{
+        font-size:12px;color:#8a98a8;word-break:break-all;
+        background:#f5f8fc;border:1px solid var(--line);padding:6px 9px;border-radius:8px;
+    }
+    .btn-go{
+        margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;
+        background:var(--primary);color:#fff;border:none;border-radius:11px;
+        padding:12px 10px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;
+        transition:background .18s ease;
+    }
+    .btn-go:hover{background:var(--primary-ink);}
+    .btn-go svg{transition:transform .18s ease;}
+    .btn-go:hover svg{transform:translateX(3px);}
+    /* ===== 页脚 ===== */
+    footer{max-width:1040px;margin:44px auto 60px;padding:0 20px;text-align:center;color:#9aa7b6;font-size:13px;line-height:2;}
+    footer .foot-line{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;}
+    footer a{color:var(--primary-ink);text-decoration:none;}
+    footer a:hover{text-decoration:underline;}
+    @media (max-width:640px){
+        .hero{padding:44px 16px 28px;}
+        .cards{grid-template-columns:1fr 1fr;gap:11px;}
+        .card{padding:14px;gap:12px;}
+        .app-name{font-size:15.5px;}
+        .app-desc{font-size:12px;}
+    }
+    @media (max-width:400px){
+        .cards{grid-template-columns:1fr;}
+    }
+</style>
 </head>
 <body>
-    <canvas id="particles-canvas"></canvas>
 
-    <div class="nav">
-        <div class="nav-wrap">
-            <div class="nav-logo">小刘个人主页</div>
-            <div class="nav-menu">
-                <a href="#notice">公告</a>
-                <a href="#about">关于我</a>
-                <a href="#photo">摄影爱好</a>
-                <a href="#safe">电脑安全</a>
-                <a href="#contact">联系方式</a>
-            </div>
+<!-- ===== Hero ===== -->
+<header class="hero">
+    <div class="hero-inner">
+        <span class="kicker">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+            全部来自软件官方网站
+        </span>
+        <h1>常用软件 <span>官方导航</span></h1>
+        <p class="sub">一次收齐你常用的装机软件，点击按钮直达官方网站下载，远离第三方捆绑安装包。</p>
+        <div class="statbar">
+            <span>20+ 常用软件</span>
+            <span>10 个分类</span>
+            <span>一键直达官网</span>
+            <span>免费 · 纯净</span>
         </div>
     </div>
+</header>
 
-    <div class="main">
-        <div class="hero">
-            <h1>爱摄影的小刘</h1>
-            <p>生活记录 · 网络安全 · 保持热爱</p>
-        </div>
-
-        <!-- 独立公告板块，放在关于我上方 -->
-        <div class="card" id="notice">
-            <h2>📢 网站公告</h2>
-            <p>网站列表（以下网址均可访问）</p>
-            <p>xiaoliu.bbroot.com</p>
-            <p>asyxl.bbroot.com</p>
-            <p>syxl.bbroot.com</p>
-            <p>liuhaoyu.bbroot.com</p>
-            <p>asyxl.ccwu.cc</p>
-            <p>asyxl.de5.net</p>
-
-        </div>
-
-        <div class="card" id="about">
-            <h2>✨ 关于我</h2>
-            <p>大家好，我是小刘，一名同时热爱摄影与网络安全技术的爱好者。在日常的生活当中，我善于去发现身边那些容易被忽略的美好瞬间，喜欢拿着设备出门四处走走，用镜头记录现实世界里各种各样的风景与人情。</p>
-            <p>除了摄影之外，我对计算机相关领域抱有浓厚的兴趣，会利用空余时间自学电脑相关知识，一点点积累技术经验。我性格乐于交流，愿意和同好互相分享想法，不管是摄影拍摄技巧，还是电脑技术问题，都欢迎一起探讨。</p>
-            <p>我始终带着好奇心去看待事物，一边感受现实世界的烟火风光，一边探索数字世界的奇妙，不断学习新东西，一点点提升自己，希望可以认识更多志同道合的朋友。</p>
-        </div>
-
-        <div class="card" id="photo">
-            <h2>📷 摄影爱好</h2>
-            <p>摄影是我长期坚持的爱好，也是我观察世界、记录生活的方式。我偏爱风光、纪实类拍摄，喜欢捕捉清晨、黄昏、城市与山野的自然瞬间。</p>
-            <p>从构图、取景到后期调色，我一直在不断学习打磨。对我来说，摄影不只是拍照，更是留存回忆、治愈生活的一种方式。每一张照片，都是独属于当下的温柔与风景。外出游玩、日常散步的时候，我都会习惯性留意眼前的画面，努力把转瞬即逝的景色定格下来。</p>
-        </div>
-
-        <div class="card" id="safe">
-            <h2>💻 电脑安全</h2>
-            <p>网络安全是我的另一大兴趣方向。日常学习个人设备防护、网络基础、系统优化、隐私安全等实用知识，坚持合法合规学习技术。</p>
-            <p>我不断积累网络安全认知，学习规避网络风险、保护个人隐私与设备安全，专注正向网络技术研究，持续深耕，稳步提升自己的技术认知。平时也会折腾电脑系统，研究设备维护、排查各类小故障，把学到的知识运用到实际使用当中。</p>
-        </div>
-
-       <div class="card" id="contact">
-    <h2>🌐 社交链接</h2>
-    <p>如果你喜欢摄影、爱好数码、想交流电脑技术与网络安全，欢迎通过下方链接关注、交流、学习！</p>
-    <p style="font-size:14px;color:#90a8c7;">提示：GitHub服务器在海外，国内访问速度可能较慢，请耐心等待。</p>
-    <div class="link-box">
-        <a href="https://github.com/liu20130812/-" target="_blank">GitHub</a>
-        <a href="https://www.kuaishou.com/profile/3xuypsbn2adtfj9?source=NewReco" target="_blank">快手主页</a>
+<!-- ===== 安全提示 ===== -->
+<div class="safe-tip">
+    <div class="box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+        <div><strong>安装提醒：</strong>请务必通过本页按钮跳转的官方网址下载安装，不要轻信搜索引擎里的仿冒站点与第三方下载站，避免误装捆绑软件或木马。</div>
     </div>
 </div>
 
-        <footer>© 2026 爱摄影的小刘 | 个人主页</footer>
+<main class="wrap" id="app"></main>
+
+<footer>
+    <div class="foot-line">
+        <span>本站为纯静态导航页，不含任何安装包</span>
+        <a href="#app">返回顶部</a>
     </div>
+    <div>点击任意按钮将在新窗口打开对应软件官网</div>
+</footer>
 
-    <script>
-        const canvas = document.getElementById("particles-canvas");
-        const ctx = canvas.getContext("2d");
-        let w, h;
-        let particlesArr = [];
+<script>
+// ===== 软件数据 =====
+const CATS = [
+  {key:"record", name:"录屏 · 直播", color:"#e8590c"},
+  {key:"secure", name:"安全防护",   color:"#0b7285"},
+  {key:"browser",name:"浏览器",     color:"#1c7ed6"},
+  {key:"office", name:"办公工具",   color:"#7048e8"},
+  {key:"chat",   name:"通讯 · 会议", color:"#2f9e44"},
+  {key:"archive",name:"压缩解压",   color:"#e67700"},
+  {key:"find",   name:"搜索 · 下载", color:"#e03131"},
+  {key:"media",  name:"影音播放",   color:"#d6336c"},
+  {key:"code",   name:"编辑器 · 编程", color:"#4263eb"},
+  {key:"cloud",  name:"网盘 · 存储", color:"#1098ad"}
+];
 
-        function resize() {
-            w = canvas.width = window.innerWidth;
-            h = canvas.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener("resize", resize);
+// 图标：几何简化符号（不仿制品牌 Logo）
+const ICONS = {
+  record:  '<path d="M6 4h12v10a6 6 0 0 1-6 6 6 6 0 0 1-6-6V4z"/><path d="M6 8h12"/>',          // 摄像机
+  secure:  '<path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/>', // 盾牌
+  browser: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/>', // 地球
+  office:  '<path d="M7 3h7l4 4v14H7V3z"/><path d="M14 3v4h4"/><path d="M10 12h6M10 16h6"/>',       // 文档
+  chat:    '<path d="M4 6h16v11H10l-6 4V6z"/><path d="M8 10h8M8 13h5"/>',                          // 聊天气泡
+  archive: '<path d="M4 8l8-4 8 4v9l-8 4-8-4V8z"/><path d="M4 8l8 4 8-4"/><path d="M12 12v9"/>',    // 压缩盒
+  find:    '<circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/><path d="M8 11h6"/>',              // 放大镜
+  media:   '<circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5-6-3.5z"/>',                    // 播放
+  code:    '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/><path d="M13 4l-2 16"/>',                        // 代码
+  cloud:   '<path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.5A4.5 4.5 0 0 1 17 18H7z"/><path d="M12 10v7M9 13l3-3 3 3"/>' // 云/上传
+};
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * w;
-                this.y = Math.random() * h;
-                this.r = Math.random() * 1.8 + 0.2;
-                this.sx = (Math.random() - 0.5) * 0.4;
-                this.sy = (Math.random() - 0.5) * 0.4;
-                this.color = Math.random() > 0.5 ? "rgba(79,195,247,0.5)" : "rgba(120,160,255,0.45)";
-            }
-            update() {
-                this.x += this.sx;
-                this.y += this.sy;
-                if(this.x < 0 || this.x > w) this.sx *= -1;
-                if(this.y < 0 || this.y > h) this.sy *= -1;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
-        }
+const SOFTWARES = [
+  // 录屏 · 直播
+  {cat:"record", name:"OBS Studio", desc:"免费开源录屏与直播推流", url:"https://obsproject.com/", domain:"obsproject.com"},
+  {cat:"record", name:"剪映专业版", desc:"字节跳动出品的视频剪辑软件",   url:"https://www.capcut.cn/", domain:"capcut.cn"},
+  // 安全防护
+  {cat:"secure", name:"火绒安全", desc:"轻巧干净的电脑防护软件",   url:"https://www.huorong.cn/", domain:"huorong.cn"},
+  // 浏览器
+  {cat:"browser",name:"Chrome 谷歌浏览器", desc:"谷歌官方浏览器", url:"https://www.google.com/chrome/", domain:"google.com/chrome"},
+  {cat:"browser",name:"Microsoft Edge", desc:"微软系统自带浏览器", url:"https://www.microsoft.com/edge", domain:"microsoft.com/edge"},
+  {cat:"browser",name:"Firefox 火狐", desc:"注重隐私的开源浏览器", url:"https://www.mozilla.org/zh-CN/firefox/", domain:"mozilla.org/firefox"},
+  // 办公工具
+  {cat:"office", name:"WPS Office", desc:"国产办公套件",         url:"https://www.wps.cn/", domain:"wps.cn"},
+  {cat:"office", name:"LibreOffice", desc:"免费开源办公套件",     url:"https://www.libreoffice.org/", domain:"libreoffice.org"},
+  {cat:"office", name:"Notion", desc:"笔记与协作工作台",          url:"https://www.notion.so/", domain:"notion.so"},
+  // 通讯 · 会议
+  {cat:"chat", name:"微信", desc:"日常通讯与社交",          url:"https://weixin.qq.com/", domain:"weixin.qq.com"},
+  {cat:"chat", name:"QQ", desc:"腾讯即时通讯",              url:"https://im.qq.com/", domain:"im.qq.com"},
+  {cat:"chat", name:"企业微信", desc:"企业办公协同",          url:"https://work.weixin.qq.com/", domain:"work.weixin.qq.com"},
+  {cat:"chat", name:"腾讯会议", desc:"视频会议与在线协作",     url:"https://meeting.tencent.com/", domain:"meeting.tencent.com"},
+  {cat:"chat", name:"钉钉", desc:"企业协同办公平台",         url:"https://www.dingtalk.com/", domain:"dingtalk.com"},
+  // 压缩解压
+  {cat:"archive", name:"7-Zip", desc:"免费高压缩比解压工具",  url:"https://www.7-zip.org/", domain:"7-zip.org"},
+  {cat:"archive", name:"Bandizip", desc:"轻量好用的压缩软件", url:"https://www.bandisoft.com/", domain:"bandisoft.com"},
+  // 搜索 · 下载
+  {cat:"find", name:"Everything", desc:"秒搜电脑文件的神器", url:"https://www.voidtools.com/", domain:"voidtools.com"},
+  {cat:"find", name:"迅雷", desc:"高速下载工具",           url:"https://www.xunlei.com/", domain:"xunlei.com"},
+  // 影音播放
+  {cat:"media", name:"PotPlayer", desc:"功能强大的视频播放器", url:"https://potplayer.daum.net/", domain:"potplayer.daum.net"},
+  {cat:"media", name:"VLC", desc:"全能免费开源播放器",       url:"https://www.videolan.org/vlc/", domain:"videolan.org/vlc"},
+  // 编辑器 · 编程
+  {cat:"code", name:"Notepad++", desc:"轻量文本代码编辑器",  url:"https://notepad-plus-plus.org/", domain:"notepad-plus-plus.org"},
+  {cat:"code", name:"Visual Studio Code", desc:"微软开源代码编辑器", url:"https://code.visualstudio.com/", domain:"code.visualstudio.com"},
+  // 网盘 · 存储
+  {cat:"cloud", name:"百度网盘", desc:"云存储与文件分享",    url:"https://pan.baidu.com/", domain:"pan.baidu.com"},
+];
 
-        for(let i = 0; i < 320; i++){
-            particlesArr.push(new Particle());
-        }
+// ===== 渲染 =====
+const catMap = Object.fromEntries(CATS.map(c=>[c.key,c]));
 
-        function animate(){
-            ctx.clearRect(0,0,w,h);
-            particlesArr.forEach(p=>{
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
+function render(){
+  const app = document.getElementById("app");
+  const html = CATS.map(cat=>{
+    const items = SOFTWARES.filter(s=>s.cat===cat.key);
+    if(!items.length) return "";
+    const icon = ICONS[cat.key];
+    const cards = items.map(s=>`
+      <div class="card">
+        <div class="card-top">
+          <div class="app-icon" style="background:${cat.color}">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${icon}</svg>
+          </div>
+          <div>
+            <div class="app-name">${s.name}</div>
+            <span class="badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              官方
+            </span>
+          </div>
+        </div>
+        <div class="app-desc">${s.desc}</div>
+        <div class="domain">${s.domain}</div>
+        <a class="btn-go" href="${s.url}" target="_blank" rel="noopener noreferrer">
+          前往官网下载
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    `).join("");
+    return `
+      <section class="group">
+        <div class="group-head">
+          <div class="group-icon" style="background:${cat.color}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon}</svg>
+          </div>
+          <h2>${cat.name}</h2>
+          <span class="count">${items.length} 款</span>
+        </div>
+        <div class="cards">${cards}</div>
+      </section>
+    `;
+  }).join("");
+  app.innerHTML = html;
+}
+render();
+</script>
 </body>
 </html>
