@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱摄影的小刘 | 个人主页</title>
+    <link rel="icon" href="https://p4.a.yximgs.com/uhead/AB/2026/01/27/21/BMjAyNjAxMjcyMTA5MDNfMzg0NjE4MTA1M18yX2hkNDk2XzczNg==_s.jpg" type="image/jpeg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #060913;
+            color: #e6edf7;
+            overflow-x: hidden;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 16px 40px;
+            background: rgba(12, 17, 31, 0.75);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(100, 180, 255, 0.12);
+            z-index: 999;
+        }
+
+        .nav-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            color: #82cfff;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu a {
+            color: #b4c8e8;
+            text-decoration: none;
+            margin-left: 32px;
+            font-size: 15px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #4fc3f7;
+        }
+
+        .nav-menu a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            background: #4fc3f7;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 130px 25px 80px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #94b8e0;
+            font-size: 18px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(100, 180, 255, 0.08);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 30px;
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(100, 180, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .card h2 {
+            color: #72d0ff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card p {
+            color: #c9e0f5;
+            line-height: 2;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .link-box {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .link-box a {
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: 1px solid #4fc3f750;
+            color: #82cfff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .link-box a:hover {
+            background: #4fc3f718;
+            box-shadow: 0 0 15px #4fc3f733;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #7088a0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            .nav {
+                padding: 15px 20px;
+            }
+            .nav-menu a {
+                margin-left: 15px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="nav">
+        <div class="nav-wrap">
+            <div class="nav-logo">小刘个人主页</div>
+            <div class="nav-menu">
+                <a href="#notice">公告</a>
+                <a href="#about">关于我</a>
+                <a href="#photo">摄影爱好</a>
+                <a href="#safe">电脑安全</a>
+                <a href="#contact">联系方式</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="hero">
+            <h1>爱摄影的小刘</h1>
+            <p>生活记录 · 网络安全 · 保持热爱</p>
+        </div>
+
+        <!-- 独立公告板块，放在关于我上方 -->
+        <div class="card" id="notice">
+            <h2>📢 网站公告</h2>
+            <p>网站列表（以下网址均可访问）</p>
+            <p>xiaoliu.bbroot.com</p>
+            <p>asyxl.bbroot.com</p>
+            <p>syxl.bbroot.com</p>
+            <p>liuhaoyu.bbroot.com</p>
+            <p>asyxl.ccwu.cc</p>
+            <p>asyxl.de5.net</p>
+
+        </div>
+
+        <div class="card" id="about">
+            <h2>✨ 关于我</h2>
+            <p>大家好，我是小刘，一名同时热爱摄影与网络安全技术的爱好者。在日常的生活当中，我善于去发现身边那些容易被忽略的美好瞬间，喜欢拿着设备出门四处走走，用镜头记录现实世界里各种各样的风景与人情。</p>
+            <p>除了摄影之外，我对计算机相关领域抱有浓厚的兴趣，会利用空余时间自学电脑相关知识，一点点积累技术经验。我性格乐于交流，愿意和同好互相分享想法，不管是摄影拍摄技巧，还是电脑技术问题，都欢迎一起探讨。</p>
+            <p>我始终带着好奇心去看待事物，一边感受现实世界的烟火风光，一边探索数字世界的奇妙，不断学习新东西，一点点提升自己，希望可以认识更多志同道合的朋友。</p>
+        </div>
+
+        <div class="card" id="photo">
+            <h2>📷 摄影爱好</h2>
+            <p>摄影是我长期坚持的爱好，也是我观察世界、记录生活的方式。我偏爱风光、纪实类拍摄，喜欢捕捉清晨、黄昏、城市与山野的自然瞬间。</p>
+            <p>从构图、取景到后期调色，我一直在不断学习打磨。对我来说，摄影不只是拍照，更是留存回忆、治愈生活的一种方式。每一张照片，都是独属于当下的温柔与风景。外出游玩、日常散步的时候，我都会习惯性留意眼前的画面，努力把转瞬即逝的景色定格下来。</p>
+        </div>
+
+        <div class="card" id="safe">
+            <h2>💻 电脑安全</h2>
+            <p>网络安全是我的另一大兴趣方向。日常学习个人设备防护、网络基础、系统优化、隐私安全等实用知识，坚持合法合规学习技术。</p>
+            <p>我不断积累网络安全认知，学习规避网络风险、保护个人隐私与设备安全，专注正向网络技术研究，持续深耕，稳步提升自己的技术认知。平时也会折腾电脑系统，研究设备维护、排查各类小故障，把学到的知识运用到实际使用当中。</p>
+        </div>
+
+       <div class="card" id="contact">
+    <h2>🌐 社交链接</h2>
+    <p>如果你喜欢摄影、爱好数码、想交流电脑技术与网络安全，欢迎通过下方链接关注、交流、学习！</p>
+    <p style="font-size:14px;color:#90a8c7;">提示：GitHub服务器在海外，国内访问速度可能较慢，请耐心等待。</p>
+    <div class="link-box">
+        <a href="https://github.com/liu20130812/-" target="_blank">GitHub</a>
+        <a href="https://www.kuaishou.com/profile/3xuypsbn2adtfj9?source=NewReco" target="_blank">快手主页</a>
+    </div>
+</div>
+
+        <footer>© 2026 爱摄影的小刘 | 个人主页</footer>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("particles-canvas");
+        const ctx = canvas.getContext("2d");
+        let w, h;
+        let particlesArr = [];
+
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener("resize", resize);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.r = Math.random() * 1.8 + 0.2;
+                this.sx = (Math.random() - 0.5) * 0.4;
+                this.sy = (Math.random() - 0.5) * 0.4;
+                this.color = Math.random() > 0.5 ? "rgba(79,195,247,0.5)" : "rgba(120,160,255,0.45)";
+            }
+            update() {
+                this.x += this.sx;
+                this.y += this.sy;
+                if(this.x < 0 || this.x > w) this.sx *= -1;
+                if(this.y < 0 || this.y > h) this.sy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        for(let i = 0; i < 320; i++){
+            particlesArr.push(new Particle());
+        }
+
+        function animate(){
+            ctx.clearRect(0,0,w,h);
+            particlesArr.forEach(p=>{
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
