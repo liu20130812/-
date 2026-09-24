@@ -1,298 +1,730 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>爱摄影的小刘 | 个人主页</title>
-    <link rel="icon" href="https://p4.a.yximgs.com/uhead/AB/2026/01/27/21/BMjAyNjAxMjcyMTA5MDNfMzg0NjE4MTA1M18yX2hkNDk2XzczNg==_s.jpg" type="image/jpeg">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft Yahei", sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小刘网站集合 - 软件官网导航</title>
+<meta name="description" content="小刘的软件官网收藏夹：常用软件一键直达官方下载页，涵盖浏览器、办公、开发、设计、影音、AI 等 15 大分类。">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=ZCOOL+QingKe+HuangYou&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --bg:#0A0E1A;
+    --bg-2:#0F1526;
+    --ink:#E9EDF6;
+    --muted:#93A0B8;
+    --line:rgba(148,170,220,.16);
+    --card:rgba(255,255,255,.045);
+    --card-hover:rgba(255,255,255,.075);
+    --accent:#FF6B52;
+    --display:'ZCOOL QingKe HuangYou','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif;
+    --sans:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif;
+    --cat-browser:#4C8DFF;
+    --cat-office:#FF6B52;
+    --cat-note:#9F6BFF;
+    --cat-dev:#22C98E;
+    --cat-design:#FFB02E;
+    --cat-media:#FF5CA8;
+    --cat-social:#22C7E3;
+    --cat-system:#8A94A6;
+    --cat-security:#FF5252;
+    --cat-cloud:#FF8A3D;
+    --cat-ai:#7B7DFF;
+    --cat-remote:#2BCDB8;
+    --cat-game:#BC6FFF;
+    --cat-edu:#A3E635;
+    --cat-trans:#38BDF8;
+    --radius:14px;
+    --shadow:0 4px 18px rgba(0,0,0,.28);
+    --shadow-lg:0 16px 38px rgba(0,0,0,.45);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:radial-gradient(1200px 700px at 50% -10%, #131C33 0%, var(--bg) 58%);
+    background-attachment:fixed;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* ===== 科幻背景层 ===== */
+  .bg-layer{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+  .bg-layer .grid-floor{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(148,170,220,.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148,170,220,.055) 1px, transparent 1px);
+    background-size:54px 54px;
+    -webkit-mask-image:radial-gradient(ellipse 100% 92% at 50% 0%, #000 28%, transparent 100%);
+    mask-image:radial-gradient(ellipse 100% 92% at 50% 0%, #000 28%, transparent 100%);
+  }
+  .bg-layer .nebula{position:absolute;border-radius:50%;filter:blur(90px);will-change:transform;}
+  .bg-layer .neb-a{
+    width:660px;height:660px;left:-200px;top:-160px;
+    background:radial-gradient(circle, rgba(76,110,255,.4), transparent 66%);
+    animation:driftA 26s ease-in-out infinite alternate;
+  }
+  .bg-layer .neb-b{
+    width:580px;height:580px;right:-180px;bottom:-140px;
+    background:radial-gradient(circle, rgba(255,94,130,.2), transparent 66%);
+    animation:driftB 33s ease-in-out infinite alternate;
+  }
+  .bg-layer .neb-c{
+    width:420px;height:420px;left:52%;top:34%;
+    background:radial-gradient(circle, rgba(64,196,255,.14), transparent 66%);
+    animation:driftC 40s ease-in-out infinite alternate;
+  }
+  .bg-layer .star{
+    position:absolute;border-radius:50%;background:#DFE8FF;
+    opacity:.55;
+    animation:twinkle var(--tw,4s) ease-in-out infinite;
+  }
+  @keyframes twinkle{0%,100%{opacity:.1;transform:scale(.85)}50%{opacity:.95;transform:scale(1.15)}}
+  @keyframes driftA{from{transform:translate(0,0) scale(1)}to{transform:translate(100px,60px) scale(1.18)}}
+  @keyframes driftB{from{transform:translate(0,0) scale(1)}to{transform:translate(-80px,-50px) scale(1.12)}}
+  @keyframes driftC{from{transform:translate(0,0) scale(1)}to{transform:translate(-60px,90px) scale(1.2)}}
+  a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px;}
 
-        html {
-            scroll-behavior: smooth;
-        }
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    z-index:1;
+    padding:72px 24px 56px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:none;
+  }
+  .hero-inner{
+    position:relative;max-width:880px;margin:0 auto;
+    animation:fadeUp .85s ease both;
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.18em;font-weight:700;
+    color:var(--accent);
+    text-transform:uppercase;
+  }
+  .eyebrow::before{
+    content:"";width:22px;height:22px;flex:none;
+    background:var(--accent);
+    border-radius:4px 4px 4px 0;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z'/%3E%3C/svg%3E") center/contain no-repeat;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z'/%3E%3C/svg%3E") center/contain no-repeat;
+    background-color:var(--accent);
+  }
+  h1{
+    font-family:var(--display);
+    font-size:clamp(46px,7.2vw,76px);
+    font-weight:400;
+    letter-spacing:.01em;
+    margin:18px 0 14px;
+    line-height:1.14;
+    text-shadow:0 0 34px rgba(96,140,255,.28);
+  }
+  h1 .dot{color:var(--accent);}
+  .subtitle{
+    max-width:520px;margin:0 auto 34px;
+    color:var(--muted);font-size:17px;
+  }
+  .search{
+    max-width:560px;margin:0 auto 30px;
+    display:flex;align-items:center;gap:10px;
+    background:rgba(255,255,255,.06);
+    border:1.5px solid var(--line);
+    border-radius:999px;
+    padding:6px 8px 6px 20px;
+    box-shadow:var(--shadow);
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .search:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px rgba(255,107,82,.16);}
+  .search svg{width:18px;height:18px;color:var(--muted);flex:none;}
+  .search input{
+    flex:1;border:none;outline:none;background:transparent;
+    font-family:var(--sans);font-size:16px;color:var(--ink);
+    padding:10px 0;
+  }
+  .search input::placeholder{color:#5F6A82;}
+  .search kbd{
+    flex:none;font-family:var(--sans);font-size:12px;color:var(--muted);
+    background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:6px;
+    padding:4px 9px;display:none;
+  }
+  .stats{
+    display:flex;justify-content:center;gap:34px;
+    font-size:14px;color:var(--muted);
+  }
+  .stats b{
+    display:block;font-family:var(--display);
+    font-size:27px;font-weight:400;color:var(--ink);
+    line-height:1.25;
+  }
+  .swatches{
+    margin:40px auto 0;max-width:720px;
+    display:flex;gap:7px;justify-content:center;flex-wrap:wrap;
+  }
+  .swatches i{
+    width:20px;height:20px;border-radius:6px;
+    display:block;transition:transform .2s;
+  }
+  .swatches i:hover{transform:translateY(-3px) rotate(-6deg);}
 
-        body {
-            background-color: #060913;
-            color: #e6edf7;
-            overflow-x: hidden;
-        }
+  /* ===== Category nav ===== */
+  .catnav-wrap{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,14,26,.82);
+    -webkit-backdrop-filter:blur(12px);
+    backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .catnav{
+    max-width:1200px;margin:0 auto;
+    display:flex;gap:6px;padding:10px 20px;
+    overflow-x:auto;
+    scrollbar-width:thin;
+  }
+  .catnav::-webkit-scrollbar{height:5px;}
+  .catnav::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px;}
+  .catnav button{
+    flex:none;
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--sans);font-size:14px;font-weight:500;
+    color:var(--ink);background:transparent;
+    border:1px solid transparent;border-radius:999px;
+    padding:8px 14px;cursor:pointer;
+    transition:background .18s, border-color .18s;
+    min-height:44px;
+  }
+  .catnav button i{
+    width:8px;height:8px;border-radius:50%;flex:none;
+    background:var(--cat,var(--muted));
+  }
+  .catnav button:hover{background:rgba(255,255,255,.08);border-color:var(--line);}
+  .catnav button.active{
+    background:#E9EDF6;color:#0A0E1A;
+  }
+  .catnav button.active i{outline:2px solid rgba(10,14,26,.55);outline-offset:1px;}
 
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
+  /* ===== Main ===== */
+  main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:48px 20px 80px;}
+  .section{padding:28px 0 10px;}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    margin-bottom:8px;
+  }
+  .section-head .cat-dot{
+    width:14px;height:14px;border-radius:4px;
+    background:var(--cat,var(--muted));
+    align-self:center;
+    box-shadow:0 0 12px var(--cat,transparent);
+  }
+  .section-head h2{
+    font-family:var(--display);font-size:31px;font-weight:400;
+    letter-spacing:.01em;
+  }
+  .section-head .en{
+    font-size:12px;font-weight:700;letter-spacing:.22em;
+    color:#5F6A82;
+  }
+  .section-head .count{
+    margin-left:auto;font-size:13px;color:var(--muted);
+    background:var(--bg-2);border:1px solid var(--line);border-radius:999px;
+    padding:3px 12px;
+  }
+  .section-desc{color:var(--muted);font-size:14.5px;margin-bottom:22px;max-width:640px;}
 
-        .nav {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding: 16px 40px;
-            background: rgba(12, 17, 31, 0.75);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(100, 180, 255, 0.12);
-            z-index: 999;
-        }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:18px;
+  }
+  .card{
+    position:relative;
+    display:block;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 20px 20px;
+    box-shadow:var(--shadow);
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";
+    position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:46px;height:14px;
+    background:var(--cat,var(--accent));
+    border-radius:0 0 9px 9px;
+    box-shadow:0 0 16px var(--cat,transparent);
+    transition:height .2s ease;
+  }
+  .card:hover::before{height:20px;}
+  .card:hover{
+    transform:translateY(-4px);
+    background:var(--card-hover);
+    border-color:var(--cat,var(--accent));
+    box-shadow:var(--shadow-lg), 0 0 0 1px var(--cat,transparent);
+  }
+  @supports (background: color-mix(in srgb, red 50%, blue)) {
+    .card:hover{
+      box-shadow:var(--shadow-lg), 0 0 0 1px var(--cat,transparent), 0 0 26px color-mix(in srgb, var(--cat,var(--accent)) 22%, transparent);
+    }
+  }
+  .card-top{
+    display:flex;align-items:center;gap:14px;
+    margin-bottom:12px;
+  }
+  .icon{
+    width:52px;height:52px;border-radius:13px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-weight:400;font-size:19px;
+    color:#fff;letter-spacing:.01em;
+    flex:none;
+    box-shadow:inset 0 -2px 0 rgba(0,0,0,.12);
+    transition:transform .2s ease;
+  }
+  .card:hover .icon{transform:scale(1.06) rotate(-2deg);}
+  .card-name{
+    font-family:var(--display);
+    font-size:18.5px;font-weight:400;line-height:1.35;
+    display:flex;align-items:center;gap:6px;
+  }
+  .card-name .go{
+    width:15px;height:15px;flex:none;opacity:0;
+    transform:translateX(-4px);
+    transition:opacity .2s, transform .2s;
+  }
+  .card:hover .card-name .go{opacity:.6;transform:translateX(0);}
+  .card-desc{
+    font-size:13.5px;color:var(--muted);
+    min-height:40px;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .card-url{
+    display:flex;align-items:center;gap:5px;
+    margin-top:14px;padding-top:12px;
+    border-top:1px dashed rgba(148,170,220,.14);
+    font-size:12px;color:#5F6A82;
+    word-break:break-all;
+  }
+  .card-url svg{width:12px;height:12px;flex:none;}
 
-        .nav-wrap {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  .empty{
+    text-align:center;padding:60px 20px;color:var(--muted);
+    font-size:15px;
+  }
+  .empty strong{display:block;font-family:var(--display);font-size:24px;font-weight:400;color:var(--ink);margin-bottom:6px;}
 
-        .nav-logo {
-            font-size: 20px;
-            color: #82cfff;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
+  footer{
+    position:relative;z-index:1;
+    border-top:1px solid var(--line);
+    padding:36px 20px 48px;
+    text-align:center;color:var(--muted);font-size:13.5px;
+  }
+  footer b{color:var(--ink);font-family:var(--display);font-weight:400;}
+  footer .foot-line{margin-bottom:6px;}
 
-        .nav-menu a {
-            color: #b4c8e8;
-            text-decoration: none;
-            margin-left: 32px;
-            font-size: 15px;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .nav-menu a:hover {
-            color: #4fc3f7;
-        }
-
-        .nav-menu a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 0;
-            height: 2px;
-            background: #4fc3f7;
-            transition: 0.3s;
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        .main {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 130px 25px 80px;
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .hero h1 {
-            font-size: 44px;
-            color: #ffffff;
-            margin-bottom: 12px;
-        }
-
-        .hero p {
-            color: #94b8e0;
-            font-size: 18px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(100, 180, 255, 0.08);
-            border-radius: 16px;
-            padding: 35px;
-            margin-bottom: 30px;
-            transition: 0.3s ease;
-        }
-
-        .card:hover {
-            border-color: rgba(100, 180, 255, 0.2);
-            transform: translateY(-4px);
-        }
-
-        .card h2 {
-            color: #72d0ff;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .card p {
-            color: #c9e0f5;
-            line-height: 2;
-            font-size: 16px;
-            margin-bottom: 16px;
-        }
-
-        .link-box {
-            margin-top: 40px;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .link-box a {
-            padding: 12px 30px;
-            border-radius: 30px;
-            border: 1px solid #4fc3f750;
-            color: #82cfff;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .link-box a:hover {
-            background: #4fc3f718;
-            box-shadow: 0 0 15px #4fc3f733;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            color: #7088a0;
-            font-size: 14px;
-        }
-
-        @media (max-width: 700px) {
-            .nav {
-                padding: 15px 20px;
-            }
-            .nav-menu a {
-                margin-left: 15px;
-            }
-            .hero h1 {
-                font-size: 32px;
-            }
-            .card {
-                padding: 25px;
-            }
-        }
-    </style>
+  /* ===== Responsive ===== */
+  @media (max-width:640px){
+    .hero{padding:52px 16px 44px;}
+    .stats{gap:22px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
+    .card{padding:22px 14px 16px;}
+    .card-name{font-size:15.5px;}
+    .card-desc{min-height:0;font-size:12.5px;}
+    .icon{width:44px;height:44px;font-size:16px;border-radius:11px;}
+    .section-head h2{font-size:24px;}
+    .catnav button{min-height:44px;padding:7px 12px;font-size:13.5px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
 </head>
 <body>
-    <canvas id="particles-canvas"></canvas>
 
-    <div class="nav">
-        <div class="nav-wrap">
-            <div class="nav-logo">小刘个人主页</div>
-            <div class="nav-menu">
-                <a href="#notice">公告</a>
-                <a href="#about">关于我</a>
-                <a href="#photo">摄影爱好</a>
-                <a href="#safe">电脑安全</a>
-                <a href="#contact">联系方式</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="main">
-        <div class="hero">
-            <h1>爱摄影的小刘</h1>
-            <p>生活记录 · 网络安全 · 保持热爱</p>
-        </div>
-
-        <!-- 独立公告板块，放在关于我上方 -->
-        <div class="card" id="notice">
-            <h2>📢 网站公告</h2>
-            <p>尊敬的各位访客：
-您好！此前本站进行系统维护升级，期间部分用户出现网站无法访问、访问失败等情况，对此给您带来不便，我们深表歉意。
-目前维护工作已全部完成，网站各项功能现已完全恢复正常访问。如您仍遇到访问异常问题，可联系我们反馈。
-感谢您的理解与耐心等待！</p>
-
-        </div>
-
-        <div class="card" id="about">
-            <h2>✨ 关于我</h2>
-            <p>大家好，我是小刘，一名同时热爱摄影与网络安全技术的爱好者。在日常的生活当中，我善于去发现身边那些容易被忽略的美好瞬间，喜欢拿着设备出门四处走走，用镜头记录现实世界里各种各样的风景与人情。</p>
-            <p>除了摄影之外，我对计算机相关领域抱有浓厚的兴趣，会利用空余时间自学电脑相关知识，一点点积累技术经验。我性格乐于交流，愿意和同好互相分享想法，不管是摄影拍摄技巧，还是电脑技术问题，都欢迎一起探讨。</p>
-            <p>我始终带着好奇心去看待事物，一边感受现实世界的烟火风光，一边探索数字世界的奇妙，不断学习新东西，一点点提升自己，希望可以认识更多志同道合的朋友。</p>
-        </div>
-
-        <div class="card" id="photo">
-            <h2>📷 摄影爱好</h2>
-            <p>摄影是我长期坚持的爱好，也是我观察世界、记录生活的方式。我偏爱风光、纪实类拍摄，喜欢捕捉清晨、黄昏、城市与山野的自然瞬间。</p>
-            <p>从构图、取景到后期调色，我一直在不断学习打磨。对我来说，摄影不只是拍照，更是留存回忆、治愈生活的一种方式。每一张照片，都是独属于当下的温柔与风景。外出游玩、日常散步的时候，我都会习惯性留意眼前的画面，努力把转瞬即逝的景色定格下来。</p>
-        </div>
-
-        <div class="card" id="safe">
-            <h2>💻 电脑安全</h2>
-            <p>网络安全是我的另一大兴趣方向。日常学习个人设备防护、网络基础、系统优化、隐私安全等实用知识，坚持合法合规学习技术。</p>
-            <p>我不断积累网络安全认知，学习规避网络风险、保护个人隐私与设备安全，专注正向网络技术研究，持续深耕，稳步提升自己的技术认知。平时也会折腾电脑系统，研究设备维护、排查各类小故障，把学到的知识运用到实际使用当中。</p>
-        </div>
-
-       <div class="card" id="contact">
-    <h2>🌐 社交链接</h2>
-    <p>如果你喜欢摄影、爱好数码、想交流电脑技术与网络安全，欢迎通过下方链接关注、交流、学习！</p>
-    <p style="font-size:14px;color:#90a8c7;">提示：GitHub服务器在海外，国内访问速度可能较慢，请耐心等待。</p>
-    <div class="link-box">
-        <a href="https://github.com/liu20130812/-" target="_blank">GitHub</a>
-        <a href="https://www.kuaishou.com/profile/3xuypsbn2adtfj9?source=NewReco" target="_blank">快手主页</a>
-    </div>
+<div class="bg-layer" aria-hidden="true">
+  <div class="grid-floor"></div>
+  <div class="nebula neb-a"></div>
+  <div class="nebula neb-b"></div>
+  <div class="nebula neb-c"></div>
+  <div id="stars"></div>
 </div>
 
-        <footer>© 2026 爱摄影的小刘 | 个人主页</footer>
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">电脑软件收藏夹</span>
+    <h1>小刘网站集合<span class="dot">。</span></h1>
+    <p class="subtitle">把常用的软件官网都收进这一页，一站式找到你想要的软件</p>
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="searchInput" type="text" placeholder="搜索软件名称或用途，如：笔记、剪辑、翻译…" autocomplete="off">
+      <kbd id="searchKbd">/</kbd>
     </div>
+    <div class="stats">
+      <div><b id="statApps">0</b>款软件</div>
+      <div><b id="statCats">0</b>个分类</div>
+      <div><b>直达</b>官网下载</div>
+    </div>
+    <div class="swatches" id="swatches" aria-hidden="true"></div>
+  </div>
+</header>
 
-    <script>
-        const canvas = document.getElementById("particles-canvas");
-        const ctx = canvas.getContext("2d");
-        let w, h;
-        let particlesArr = [];
+<nav class="catnav-wrap" aria-label="分类导航">
+  <div class="catnav" id="catNav"></div>
+</nav>
 
-        function resize() {
-            w = canvas.width = window.innerWidth;
-            h = canvas.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener("resize", resize);
+<main id="content"></main>
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * w;
-                this.y = Math.random() * h;
-                this.r = Math.random() * 1.8 + 0.2;
-                this.sx = (Math.random() - 0.5) * 0.4;
-                this.sy = (Math.random() - 0.5) * 0.4;
-                this.color = Math.random() > 0.5 ? "rgba(79,195,247,0.5)" : "rgba(120,160,255,0.45)";
-            }
-            update() {
-                this.x += this.sx;
-                this.y += this.sy;
-                if(this.x < 0 || this.x > w) this.sx *= -1;
-                if(this.y < 0 || this.y > h) this.sy *= -1;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
-        }
+<footer>
+  <p class="foot-line"><b>小刘网站集合</b> · 爱摄影的小刘制作</p>
+  <p>本站为静态的HTML网站，不提供软件下载包，请点击卡片后至官网下载-若发现链接失效，欢迎提醒更新</p>
+</footer>
 
-        for(let i = 0; i < 320; i++){
-            particlesArr.push(new Particle());
-        }
+<script>
+/* ================= 分类数据 ================= */
+const CATS = [
+  {id:'browser', name:'网页浏览器', en:'BROWSERS',    color:'#3B82F6', desc:'日常上网的窗口，选一款顺手的当家主力。'},
+  {id:'office',  name:'办公效率',   en:'OFFICE',      color:'#E4573D', desc:'文档、会议、协作，把工作流顺起来。'},
+  {id:'note',    name:'笔记与知识', en:'NOTES',       color:'#8B5CF6', desc:'记录、整理、沉淀，打造自己的第二大脑。'},
+  {id:'dev',     name:'开发编程',   en:'DEVELOPMENT', color:'#10B981', desc:'编辑器、版本控制与数据库，程序员的日常工具箱。'},
+  {id:'design',  name:'设计创意',   en:'DESIGN',      color:'#F59E0B', desc:'平面、UI、3D 与视频创作，让想法可视化。'},
+  {id:'media',   name:'影音娱乐',   en:'MEDIA',       color:'#EC4899', desc:'听歌、看片、剪视频，娱乐生产力两不误。'},
+  {id:'social',  name:'社交通讯',   en:'SOCIAL',      color:'#06B6D4', desc:'聊天与社区，保持和朋友、世界的连接。'},
+  {id:'system',  name:'系统工具',   en:'SYSTEM',      color:'#64748B', desc:'压缩、搜索、截图、监测，把电脑调教得趁手。'},
+  {id:'security',name:'安全防护',   en:'SECURITY',    color:'#EF4444', desc:'杀毒与防护，给电脑加一道安心锁。'},
+  {id:'cloud',   name:'网盘与下载', en:'STORAGE',     color:'#F97316', desc:'云存储与下载工具，数据备份、文件传输不发愁。'},
+  {id:'ai',      name:'人工智能',   en:'AI',          color:'#6366F1', desc:'对话、搜索、创作，AI 时代的效率外挂。'},
+  {id:'remote',  name:'远程连接',   en:'REMOTE',      color:'#14B8A6', desc:'远程办公、虚拟机，电脑不再有距离。'},
+  {id:'game',    name:'游戏平台',   en:'GAMING',      color:'#A855F7', desc:'Steam、Epic 与国服平台，游戏爱好者的入口。'},
+  {id:'edu',     name:'学习教育',   en:'LEARNING',    color:'#84CC16', desc:'在线课程与学习工具，终身学习者的加油站。'},
+  {id:'trans',   name:'翻译与词典', en:'LANGUAGE',    color:'#0EA5E9', desc:'翻译与查词，跨语言交流的桥梁。'}
+];
 
-        function animate(){
-            ctx.clearRect(0,0,w,h);
-            particlesArr.forEach(p=>{
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
+/* ================= 软件数据（分类 + 名称 + 描述 + 官网 + 图标色 + 图标字） ================= */
+const APPS = [
+  /* 网页浏览器 */
+  {c:'browser', n:'Chrome',           d:'Google 出品的全球主流浏览器，扩展生态强大',            u:'https://www.google.com/chrome/',        ic:'#4285F4', t:'Ch'},
+  {c:'browser', n:'Microsoft Edge',   d:'微软新一代浏览器，内置 AI 与效率工具',                  u:'https://www.microsoft.com/edge',        ic:'#0078D4', t:'E'},
+  {c:'browser', n:'Firefox',          d:'Mozilla 开源浏览器，隐私保护出色',                     u:'https://www.mozilla.org/firefox/',      ic:'#FF7139', t:'FF'},
+  {c:'browser', n:'Opera',            d:'老牌浏览器，内置广告拦截与免费 VPN',                   u:'https://www.opera.com/',                ic:'#FF1B2D', t:'O'},
+  {c:'browser', n:'Brave',            d:'以隐私和去广告为核心的 Chromium 浏览器',               u:'https://brave.com/',                    ic:'#FB542B', t:'B'},
+  {c:'browser', n:'Vivaldi',          d:'高度可定制的浏览器，适合重度标签用户',                 u:'https://vivaldi.com/',                  ic:'#EF3939', t:'V'},
+  {c:'browser', n:'360 安全浏览器',   d:'国产浏览器，兼容网银与政务网站',                       u:'https://browser.360.cn/',               ic:'#31B7FF', t:'360'},
+  {c:'browser', n:'QQ 浏览器',        d:'腾讯出品的轻快浏览器，多端同步',                       u:'https://browser.qq.com/',               ic:'#0AC66E', t:'QQ'},
+
+  /* 办公效率 */
+  {c:'office', n:'Microsoft 365',     d:'Office 全家桶：Word、Excel、PowerPoint 在线版',        u:'https://www.office.com/',               ic:'#D83B01', t:'O'},
+  {c:'office', n:'WPS Office',        d:'国产办公套件，兼容 Office 文档格式',                   u:'https://www.wps.cn/',                   ic:'#E6432C', t:'W'},
+  {c:'office', n:'飞书',              d:'一站式协作平台：文档、会议、日历、多维表格',            u:'https://www.feishu.cn/',                ic:'#3370FF', t:'飞'},
+  {c:'office', n:'语雀',              d:'蚂蚁出品的云端知识库与团队文档',                       u:'https://www.yuque.com/',                ic:'#2D7FF9', t:'语'},
+  {c:'office', n:'Notion',            d:'一体化笔记、文档与项目管理工具',                       u:'https://www.notion.so/',                ic:'#1F1F1F', t:'N'},
+  {c:'office', n:'Slack',             d:'国际主流团队沟通协作平台',                             u:'https://slack.com/',                    ic:'#4A154B', t:'S'},
+  {c:'office', n:'腾讯会议',          d:'国产视频会议软件，稳定易上手',                         u:'https://meeting.tencent.com/',          ic:'#006EFF', t:'会'},
+  {c:'office', n:'Zoom',              d:'国际流行的视频会议与在线课堂',                         u:'https://zoom.us/',                      ic:'#2D8CFF', t:'Z'},
+  {c:'office', n:'钉钉',              d:'企业沟通与协同办公平台',                               u:'https://www.dingtalk.com/',             ic:'#2E7CF6', t:'钉'},
+  {c:'office', n:'石墨文档',          d:'在线协作文档表格，多人实时编辑',                       u:'https://shimo.im/',                     ic:'#1D8BFF', t:'石'},
+  {c:'office', n:'腾讯文档',          d:'腾讯在线文档，微信生态无缝衔接',                       u:'https://docs.qq.com/',                  ic:'#006EFF', t:'文'},
+  {c:'office', n:'金山文档',          d:'金山办公在线文档，多人协作',                           u:'https://www.kdocs.cn/',                 ic:'#00A96C', t:'金'},
+
+  /* 笔记与知识 */
+  {c:'note', n:'Obsidian',            d:'本地优先的 Markdown 知识库，双向链接',                 u:'https://obsidian.md/',                  ic:'#7C3AED', t:'Ob'},
+  {c:'note', n:'思源笔记',            d:'隐私优先的本地笔记，支持块引用与双向链接',              u:'https://b3log.org/siyuan/',             ic:'#E14A2C', t:'思'},
+  {c:'note', n:'Typora',              d:'极简优雅的 Markdown 编辑器，所见即所得',               u:'https://typora.io/',                    ic:'#356B9F', t:'Ty'},
+  {c:'note', n:'有道云笔记',          d:'网易出品的云笔记，多端同步',                           u:'https://note.youdao.com/',              ic:'#2E7D32', t:'云'},
+  {c:'note', n:'印象笔记',            d:'经典笔记软件，剪藏与知识管理',                         u:'https://www.yinxiang.com/',             ic:'#00A82D', t:'印'},
+  {c:'note', n:'OneNote',             d:'微软数字笔记本，自由排版',                             u:'https://www.onenote.com/',              ic:'#7719AA', t:'ON'},
+  {c:'note', n:'为知笔记',            d:'跨平台笔记软件，支持 Markdown',                        u:'https://www.wiz.cn/',                   ic:'#2C4B9E', t:'为'},
+  {c:'note', n:'XMind',               d:'老牌思维导图软件，梳理思路利器',                       u:'https://xmind.cn/',                     ic:'#DF3033', t:'X'},
+  {c:'note', n:'亿图脑图',            d:'MindMaster 思维导图，云协作',                          u:'https://www.edrawsoft.cn/mindmaster/',  ic:'#4B8BF5', t:'亿'},
+  {c:'note', n:'幕布',                d:'大纲笔记与思维导图一键转换',                           u:'https://mubu.com/',                     ic:'#FF8F1F', t:'幕'},
+
+  /* 开发编程 */
+  {c:'dev', n:'Visual Studio Code',  d:'宇宙第一编辑器，插件生态极丰富',                        u:'https://code.visualstudio.com/',        ic:'#007ACC', t:'VS'},
+  {c:'dev', n:'IntelliJ IDEA',       d:'JetBrains 出品，Java 开发的标杆 IDE',                  u:'https://www.jetbrains.com/idea/',       ic:'#FE315D', t:'IJ'},
+  {c:'dev', n:'PyCharm',             d:'专业的 Python 开发 IDE',                               u:'https://www.jetbrains.com/pycharm/',    ic:'#21D789', t:'Py'},
+  {c:'dev', n:'WebStorm',            d:'前端与 JavaScript 开发 IDE',                           u:'https://www.jetbrains.com/webstorm/',   ic:'#07C3F2', t:'WS'},
+  {c:'dev', n:'GitHub',              d:'全球最大的代码托管与协作平台',                         u:'https://github.com/',                   ic:'#181717', t:'GH'},
+  {c:'dev', n:'Git',                 d:'分布式版本控制系统，开发者必备',                       u:'https://git-scm.com/',                  ic:'#F05032', t:'Git'},
+  {c:'dev', n:'Docker',              d:'容器化平台，打包、交付、运行应用',                     u:'https://www.docker.com/',               ic:'#2496ED', t:'D'},
+  {c:'dev', n:'Postman',             d:'API 调试与接口测试神器',                               u:'https://www.postman.com/',              ic:'#FF6C37', t:'P'},
+  {c:'dev', n:'Sublime Text',        d:'轻量快速的代码编辑器，颜值高',                         u:'https://www.sublimetext.com/',          ic:'#FF9800', t:'ST'},
+  {c:'dev', n:'Notepad++',           d:'Windows 上的老牌文本编辑器',                           u:'https://notepad-plus-plus.org/',        ic:'#6FB737', t:'N+'},
+  {c:'dev', n:'HBuilderX',           d:'国产前端开发 IDE，小程序开发友好',                     u:'https://www.dcloud.io/hbuilderx.html',  ic:'#00B26B', t:'H'},
+  {c:'dev', n:'Android Studio',      d:'Android 官方集成开发环境',                             u:'https://developer.android.com/studio',  ic:'#3DDC84', t:'AS'},
+  {c:'dev', n:'Xcode',               d:'Apple 生态的官方开发工具',                             u:'https://developer.apple.com/xcode/',    ic:'#147EFB', t:'X'},
+  {c:'dev', n:'Vim',                 d:'经典终端编辑器，快捷键信仰',                           u:'https://www.vim.org/',                  ic:'#019733', t:'Vim'},
+  {c:'dev', n:'Navicat',             d:'图形化数据库管理工具，支持多种数据库',                 u:'https://www.navicat.com.cn/',           ic:'#0093D0', t:'N'},
+  {c:'dev', n:'DBeaver',             d:'开源免费的全能数据库客户端',                           u:'https://dbeaver.io/',                   ic:'#382923', t:'DB'},
+
+  /* 设计创意 */
+  {c:'design', n:'Photoshop',        d:'图像处理与设计标杆，修图必备',                         u:'https://www.adobe.com/products/photoshop.html',     ic:'#31A8FF', t:'Ps'},
+  {c:'design', n:'Illustrator',      d:'矢量图形设计标准工具',                                 u:'https://www.adobe.com/products/illustrator.html',   ic:'#FF9A00', t:'Ai'},
+  {c:'design', n:'Figma',            d:'协作式 UI/UX 设计工具，浏览器即开即用',                u:'https://www.figma.com/',                ic:'#F24E1E', t:'F'},
+  {c:'design', n:'Sketch',           d:'macOS 平台的界面设计工具',                             u:'https://www.sketch.com/',               ic:'#F7B500', t:'S'},
+  {c:'design', n:'Blender',          d:'开源免费的全能 3D 创作套件',                           u:'https://www.blender.org/',              ic:'#E87D0D', t:'B'},
+  {c:'design', n:'Canva',            d:'在线平面设计平台，模板丰富',                           u:'https://www.canva.com/',                ic:'#00C4CC', t:'C'},
+  {c:'design', n:'剪映专业版',       d:'全能易用的视频剪辑软件，AI 加持',                      u:'https://www.capcut.cn/',                ic:'#2B2B2B', t:'剪'},
+  {c:'design', n:'美图秀秀',         d:'国民级图片美化工具',                                   u:'https://xiuxiu.meitu.com/',             ic:'#FF71C5', t:'美'},
+  {c:'design', n:'蓝湖',             d:'产品设计协作平台，标注切图一步到位',                   u:'https://lanhuapp.com/',                 ic:'#255CFF', t:'蓝'},
+  {c:'design', n:'Wallpaper Engine', d:'动态壁纸引擎，桌面无限可能',                           u:'https://www.wallpaperengine.io/',       ic:'#2B7DDB', t:'WE'},
+
+  /* 影音娱乐 */
+  {c:'media', n:'网易云音乐',        d:'音乐社区与歌单文化浓厚',                               u:'https://music.163.com/',                ic:'#C20C0C', t:'云'},
+  {c:'media', n:'QQ 音乐',           d:'腾讯音乐平台，曲库庞大',                               u:'https://y.qq.com/',                     ic:'#31C27C', t:'Q'},
+  {c:'media', n:'酷狗音乐',          d:'老牌音乐播放器，听歌识曲好用',                         u:'https://www.kugou.com/',                ic:'#2A8CFF', t:'狗'},
+  {c:'media', n:'Spotify',           d:'全球最大的流媒体音乐平台',                             u:'https://www.spotify.com/',              ic:'#1DB954', t:'S'},
+  {c:'media', n:'哔哩哔哩',          d:'视频弹幕社区，年轻人的学习网站',                       u:'https://www.bilibili.com/',             ic:'#FB7299', t:'B'},
+  {c:'media', n:'PotPlayer',         d:'全能视频播放器，解码能力强',                           u:'https://potplayer.daum.net/',           ic:'#0E7CE0', t:'P'},
+  {c:'media', n:'VLC',               d:'开源万能播放器，几乎支持所有格式',                     u:'https://www.videolan.org/vlc/',         ic:'#FF8800', t:'VLC'},
+  {c:'media', n:'IINA',              d:'macOS 上现代美观的视频播放器',                         u:'https://iina.io/',                      ic:'#48D597', t:'I'},
+  {c:'media', n:'OBS Studio',        d:'开源直播与录屏软件，主播标配',                         u:'https://obsproject.com/',               ic:'#302E31', t:'OBS'},
+  {c:'media', n:'爱奇艺',            d:'在线视频平台，自制剧丰富',                             u:'https://www.iqiyi.com/',                ic:'#00BE06', t:'爱'},
+  {c:'media', n:'腾讯视频',          d:'在线视频平台，热门剧综聚集地',                         u:'https://v.qq.com/',                     ic:'#FF8A00', t:'视'},
+  {c:'media', n:'芒果TV',            d:'湖南卫视旗下视频平台',                                 u:'https://www.mgtv.com/',                 ic:'#FFB800', t:'芒'},
+
+  /* 社交通讯 */
+  {c:'social', n:'微信',             d:'国民级社交应用，沟通必备',                             u:'https://weixin.qq.com/',                ic:'#07C160', t:'微'},
+  {c:'social', n:'QQ',               d:'腾讯即时通讯，情怀与功能并存',                         u:'https://im.qq.com/',                    ic:'#12B7F5', t:'Q'},
+  {c:'social', n:'Telegram',         d:'注重安全与速度的即时通讯',                             u:'https://telegram.org/',                 ic:'#26A5E4', t:'T'},
+  {c:'social', n:'Discord',          d:'游戏与社区语音聊天平台',                               u:'https://discord.com/',                  ic:'#5865F2', t:'D'},
+  {c:'social', n:'微博',             d:'公共社交媒体平台，热点聚集地',                         u:'https://weibo.com/',                    ic:'#E6162D', t:'微'},
+  {c:'social', n:'知乎',             d:'中文问答社区，高质量内容聚集',                         u:'https://www.zhihu.com/',                ic:'#0084FF', t:'知'},
+  {c:'social', n:'豆瓣',             d:'图书、电影、音乐的文化社区',                           u:'https://www.douban.com/',               ic:'#007722', t:'豆'},
+  {c:'social', n:'小红书',           d:'生活方式分享社区，种草指南',                           u:'https://www.xiaohongshu.com/',          ic:'#FF2442', t:'红'},
+  {c:'social', n:'抖音',             d:'短视频平台，记录美好生活',                             u:'https://www.douyin.com/',               ic:'#1F1F1F', t:'抖'},
+  {c:'social', n:'快手',             d:'短视频与直播社区',                                     u:'https://www.kuaishou.com/',             ic:'#FF4906', t:'快'},
+
+  /* 系统工具 */
+  {c:'system', n:'7-Zip',            d:'开源压缩解压软件，格式兼容全',                         u:'https://www.7-zip.org/',                ic:'#7FAD1F', t:'7'},
+  {c:'system', n:'Bandizip',         d:'轻快好用的压缩软件，界面清爽',                         u:'https://www.bandisoft.com/bandizip/',   ic:'#F05A00', t:'B'},
+  {c:'system', n:'Everything',       d:'秒级全盘文件搜索，装机必备',                           u:'https://www.voidtools.com/',            ic:'#2094F3', t:'Ev'},
+  {c:'system', n:'Listary',          d:'文件搜索与启动增强，效率提升器',                       u:'https://www.listary.com/',              ic:'#EF5350', t:'L'},
+  {c:'system', n:'CCleaner',         d:'老牌系统清理与优化工具',                               u:'https://www.ccleaner.com/',             ic:'#2C3E6B', t:'C'},
+  {c:'system', n:'Snipaste',         d:'截图 + 贴图神器，效率党的最爱',                        u:'https://www.snipaste.com/',             ic:'#4A90D9', t:'S'},
+  {c:'system', n:'uTools',           d:'新一代效率工具平台，插件即插即用',                     u:'https://www.u-tools.cn/',               ic:'#3182F6', t:'u'},
+  {c:'system', n:'Quicker',          d:'快捷操作面板，一键触发常用动作',                       u:'https://getquicker.net/',               ic:'#1E88E5', t:'Q'},
+  {c:'system', n:'CPU-Z',            d:'CPU 与主板信息检测工具',                               u:'https://www.cpuid.com/softwares/cpu-z.html',        ic:'#2F4B6E', t:'C'},
+  {c:'system', n:'GPU-Z',            d:'显卡信息检测与监控',                                   u:'https://www.techpowerup.com/gpuz/',     ic:'#00A651', t:'G'},
+  {c:'system', n:'HWiNFO',           d:'专业硬件信息监测工具',                                 u:'https://www.hwinfo.com/',               ic:'#3D9BE9', t:'H'},
+  {c:'system', n:'鲁大师',           d:'电脑综合性能评测与硬件检测',                           u:'https://www.ludashi.com/',              ic:'#FF5A00', t:'鲁'},
+  {c:'system', n:'Rufus',            d:'USB 启动盘制作神器',                                   u:'https://rufus.ie/',                     ic:'#4A90D9', t:'R'},
+  {c:'system', n:'PowerToys',        d:'微软官方效率工具集，窗口管理利器',                     u:'https://learn.microsoft.com/windows/powertoys/',    ic:'#1F8BFF', t:'PT'},
+
+  /* 安全防护 */
+  {c:'security', n:'火绒安全',       d:'轻量无广告的国产杀毒软件',                             u:'https://www.huorong.cn/',               ic:'#2BA0EC', t:'火'},
+  {c:'security', n:'360 安全卫士',   d:'综合安全防护与电脑清理',                               u:'https://www.360.cn/',                   ic:'#00AF59', t:'360'},
+  {c:'security', n:'腾讯电脑管家',   d:'腾讯出品的杀毒与系统管理',                             u:'https://guanjia.qq.com/',               ic:'#1893F1', t:'管'},
+  {c:'security', n:'卡巴斯基',       d:'国际老牌安全软件，防护强大',                           u:'https://www.kaspersky.com.cn/',         ic:'#006F3C', t:'K'},
+  {c:'security', n:'Malwarebytes',   d:'恶意软件清理与实时防护',                               u:'https://www.malwarebytes.com/',         ic:'#ED1C24', t:'M'},
+  {c:'security', n:'ESET',           d:'轻量高效的国际杀毒软件',                               u:'https://www.eset.com/',                 ic:'#00A74D', t:'E'},
+  {c:'security', n:'Windows 安全中心', d:'系统自带的免费安全防护',                             u:'https://www.microsoft.com/windows/comprehensive-security', ic:'#0078D4', t:'盾'},
+  {c:'security', n:'联想电脑管家',   d:'联想电脑的管理与防护工具',                             u:'https://guanjia.lenovo.com.cn/',        ic:'#0076CE', t:'联'},
+
+  /* 网盘与下载 */
+  {c:'cloud', n:'百度网盘',          d:'国内用户量最大的云存储',                               u:'https://pan.baidu.com/',                ic:'#2B7DE9', t:'盘'},
+  {c:'cloud', n:'阿里云盘',          d:'阿里出品的高速云盘，不限速',                           u:'https://www.alipan.com/',               ic:'#1677FF', t:'阿'},
+  {c:'cloud', n:'夸克网盘',          d:'夸克浏览器配套云盘，容量大',                           u:'https://pan.quark.cn/',                 ic:'#4C5DFD', t:'夸'},
+  {c:'cloud', n:'迅雷',              d:'老牌高速下载工具，会员加速',                           u:'https://www.xunlei.com/',               ic:'#0096FF', t:'迅'},
+  {c:'cloud', n:'IDM',               d:'Internet Download Manager，多线程下载神器',           u:'https://www.internetdownloadmanager.com/',          ic:'#1384C2', t:'ID'},
+  {c:'cloud', n:'Motrix',            d:'开源免费的全能下载器，支持磁力与种子',                 u:'https://motrix.app/',                   ic:'#00B96B', t:'M'},
+  {c:'cloud', n:'qBittorrent',       d:'开源 BT 下载客户端，轻量无广告',                       u:'https://www.qbittorrent.org/',          ic:'#7A00E6', t:'qB'},
+  {c:'cloud', n:'BitComet',          d:'国产老牌 BT 下载工具',                                 u:'https://www.bitcomet.com/',             ic:'#0F7BC0', t:'BC'},
+  {c:'cloud', n:'115 网盘',          d:'大容量云存储，离线下载强',                             u:'https://115.com/',                      ic:'#009CFF', t:'115'},
+  {c:'cloud', n:'天翼云盘',          d:'中国电信云盘，空间稳定',                               u:'https://cloud.189.cn/',                 ic:'#0080FF', t:'天'},
+  {c:'cloud', n:'OneDrive',          d:'微软云盘，与 Office 深度整合',                         u:'https://www.microsoft.com/microsoft-365/onedrive',   ic:'#0067B8', t:'OD'},
+  {c:'cloud', n:'蓝奏云',            d:'免登录的小文件分享网盘',                               u:'https://www.lanzou.com/',               ic:'#146BFF', t:'蓝'},
+
+  /* 人工智能 */
+  {c:'ai', n:'ChatGPT',              d:'OpenAI 对话助手，全球 AI 标杆',                        u:'https://chatgpt.com/',                  ic:'#10A37F', t:'GPT'},
+  {c:'ai', n:'Claude',               d:'Anthropic 出品，擅长长文与写作',                       u:'https://claude.ai/',                    ic:'#D97757', t:'Cl'},
+  {c:'ai', n:'Gemini',               d:'Google AI 助手，多模态能力强',                         u:'https://gemini.google.com/',            ic:'#1A73E8', t:'G'},
+  {c:'ai', n:'豆包',                 d:'字节跳动 AI 助手，免费易用',                           u:'https://www.doubao.com/',               ic:'#3370FF', t:'豆'},
+  {c:'ai', n:'Kimi',                 d:'月之暗面出品，长文本处理出色',                         u:'https://www.kimi.com/',                 ic:'#1F1F1F', t:'K'},
+  {c:'ai', n:'DeepSeek',             d:'深度求索开源大模型，推理能力强',                       u:'https://www.deepseek.com/',             ic:'#4D6BFE', t:'DS'},
+  {c:'ai', n:'文心一言',             d:'百度大模型对话助手',                                   u:'https://yiyan.baidu.com/',              ic:'#004EFF', t:'文'},
+  {c:'ai', n:'通义千问',             d:'阿里大模型助手，办公写作全能',                         u:'https://tongyi.aliyun.com/',            ic:'#615CED', t:'通'},
+  {c:'ai', n:'腾讯元宝',             d:'腾讯混元大模型 AI 应用',                               u:'https://yuanbao.tencent.com/',          ic:'#2B5EFF', t:'元'},
+  {c:'ai', n:'讯飞星火',             d:'科大讯飞 AI 助手，语音能力突出',                       u:'https://xinghuo.xfyun.cn/',             ic:'#0066FF', t:'星'},
+  {c:'ai', n:'智谱清言',             d:'智谱 AI 对话助手，GLM 模型',                           u:'https://chatglm.cn/',                   ic:'#3970FF', t:'智'},
+  {c:'ai', n:'秘塔AI搜索',           d:'无广告直达结果的 AI 搜索引擎',                         u:'https://metaso.cn/',                    ic:'#4A67FF', t:'秘'},
+  {c:'ai', n:'纳米AI',               d:'360 出品的 AI 搜索与助手',                             u:'https://www.n.cn/',                     ic:'#0B9CFF', t:'纳'},
+  {c:'ai', n:'海螺AI',               d:'MiniMax 旗下 AI 生产力助手',                           u:'https://hailuoai.com/',                 ic:'#3B5BFF', t:'螺'},
+  {c:'ai', n:'即梦AI',               d:'字节 AI 创作平台，视频图片一键生成',                   u:'https://jimeng.jianying.com/',          ic:'#6C5CE7', t:'即'},
+
+  /* 远程连接 */
+  {c:'remote', n:'向日葵',           d:'国产远程控制软件，个人免费',                           u:'https://sunlogin.oray.com/',            ic:'#FF7A00', t:'葵'},
+  {c:'remote', n:'ToDesk',           d:'免费流畅的国产远程桌面',                               u:'https://www.todesk.com/',               ic:'#0A7AFF', t:'To'},
+  {c:'remote', n:'TeamViewer',       d:'国际主流远程控制与协作',                               u:'https://www.teamviewer.com/',           ic:'#0F68FF', t:'TV'},
+  {c:'remote', n:'RustDesk',         d:'开源远程桌面，可自建服务器',                           u:'https://rustdesk.com/',                 ic:'#0078D4', t:'RD'},
+  {c:'remote', n:'AnyDesk',          d:'轻量流畅的远程桌面软件',                               u:'https://anydesk.com/',                  ic:'#EF3E42', t:'A'},
+  {c:'remote', n:'VMware Workstation', d:'老牌桌面虚拟化平台',                                 u:'https://www.vmware.com/products/workstation-player.html', ic:'#F7941D', t:'VM'},
+  {c:'remote', n:'VirtualBox',       d:'Oracle 开源虚拟机软件',                                u:'https://www.virtualbox.org/',           ic:'#183A61', t:'VB'},
+  {c:'remote', n:'Parallels Desktop', d:'macOS 上运行 Windows 的虚拟机',                       u:'https://www.parallels.com/',            ic:'#D43D2A', t:'PD'},
+
+  /* 游戏平台 */
+  {c:'game', n:'Steam',              d:'全球最大 PC 游戏平台',                                 u:'https://store.steampowered.com/',       ic:'#171A21', t:'S'},
+  {c:'game', n:'Epic Games',         d:'Epic 游戏商城，每周免费游戏',                          u:'https://store.epicgames.com/',          ic:'#1F1F1F', t:'E'},
+  {c:'game', n:'WeGame',             d:'腾讯游戏平台，国内发行主力',                           u:'https://www.wegame.com.cn/',            ic:'#FF4E00', t:'WG'},
+  {c:'game', n:'暴雪战网',           d:'暴雪游戏平台，魔兽、暗黑系列',                         u:'https://www.blizzard.com/',             ic:'#00AEFF', t:'战'},
+  {c:'game', n:'米哈游',             d:'《原神》《崩坏》开发商官网',                           u:'https://www.mihoyo.com/',               ic:'#1B7EFC', t:'米'},
+  {c:'game', n:'腾讯游戏',           d:'腾讯游戏官网，国民级游戏发行',                         u:'https://game.qq.com/',                  ic:'#F4B400', t:'腾'},
+  {c:'game', n:'网易游戏',           d:'网易游戏官网，梦幻西游等经典',                         u:'https://game.163.com/',                 ic:'#E60012', t:'网'},
+  {c:'game', n:'Riot Games',         d:'拳头游戏，英雄联盟与无畏契约',                         u:'https://www.riotgames.com/',            ic:'#D13639', t:'R'},
+
+  /* 学习教育 */
+  {c:'edu', n:'中国大学MOOC',        d:'国内名校公开课平台',                                   u:'https://www.icourse163.org/',           ic:'#FF3737', t:'MOOC'},
+  {c:'edu', n:'网易公开课',          d:'免费名校课程与 TED 演讲',                              u:'https://open.163.com/',                 ic:'#E60012', t:'开'},
+  {c:'edu', n:'Coursera',            d:'国际顶尖高校在线课程',                                 u:'https://www.coursera.org/',             ic:'#0056D2', t:'C'},
+  {c:'edu', n:'可汗学院',            d:'Khan Academy，免费通识教育',                           u:'https://www.khanacademy.org/',          ic:'#14BF96', t:'K'},
+  {c:'edu', n:'中国知网',            d:'国内最大的学术文献数据库',                             u:'https://www.cnki.net/',                 ic:'#1F5FA8', t:'知'},
+  {c:'edu', n:'万方数据',            d:'学术期刊与学位论文数据库',                             u:'https://www.wanfangdata.com.cn/',       ic:'#0080C8', t:'万'},
+  {c:'edu', n:'Anki',                d:'间隔重复记忆卡片，高效复习',                           u:'https://apps.ankiweb.net/',             ic:'#1156B4', t:'An'},
+  {c:'edu', n:'百词斩',              d:'图片记单词，趣味背单词',                               u:'https://www.baicizhan.com/',            ic:'#FF9900', t:'百'},
+  {c:'edu', n:'扇贝单词',            d:'科学背单词，打卡学习社区',                             u:'https://www.shanbay.com/',              ic:'#2FA8FF', t:'扇'},
+  {c:'edu', n:'国家数字图书馆',      d:'国家图书馆数字资源服务',                               u:'https://www.nlc.cn/',                   ic:'#8C1F28', t:'国'},
+
+  /* 翻译与词典 */
+  {c:'trans', n:'DeepL',             d:'高质量的神经机器翻译',                                 u:'https://www.deepl.com/',                ic:'#0F2B46', t:'D'},
+  {c:'trans', n:'有道翻译',          d:'网易在线翻译，多语种支持',                             u:'https://fanyi.youdao.com/',             ic:'#2E7D32', t:'有'},
+  {c:'trans', n:'百度翻译',          d:'百度在线翻译，拍照翻译方便',                           u:'https://fanyi.baidu.com/',              ic:'#2932E1', t:'百'},
+  {c:'trans', n:'谷歌翻译',          d:'Google 在线翻译，支持百余种语言',                      u:'https://translate.google.com/',         ic:'#4285F4', t:'G'},
+  {c:'trans', n:'欧路词典',          d:'专业离线词典，支持自定义词库',                         u:'https://www.eudic.net/',                ic:'#4A90D9', t:'欧'},
+  {c:'trans', n:'金山词霸',          d:'老牌英汉词典与翻译',                                   u:'https://www.iciba.com/',                ic:'#00A0E9', t:'霸'},
+  {c:'trans', n:'剑桥词典',          d:'Cambridge Dictionary，权威英语词典',                   u:'https://dictionary.cambridge.org/',     ic:'#006699', t:'剑'},
+  {c:'trans', n:'韦氏词典',          d:'Merriam-Webster，美式英语权威',                        u:'https://www.merriam-webster.com/',      ic:'#2B6CB0', t:'MW'}
+];
+
+/* ================= 渲染 ================= */
+const state = {cat:'all', query:''};
+const navEl = document.getElementById('catNav');
+const contentEl = document.getElementById('content');
+const searchEl = document.getElementById('searchInput');
+
+function hostOf(url){
+  try{ return new URL(url).hostname.replace(/^www\./,''); }
+  catch(e){ return url; }
+}
+
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function renderNav(){
+  const items = [{id:'all', name:'全部', color:'#C9D4E8'}].concat(CATS);
+  navEl.innerHTML = items.map(c => `
+    <button class="${state.cat===c.id?'active':''}" data-cat="${c.id}" style="--cat:${c.color}">
+      <i></i>${esc(c.name)}
+    </button>
+  `).join('');
+}
+
+function render(){
+  renderNav();
+  const q = state.query.trim().toLowerCase();
+  let shown = 0;
+
+  const html = CATS.map(cat => {
+    const list = APPS.filter(a => a.c === cat.id);
+    const items = list.filter(a =>
+      (state.cat === 'all' || a.c === state.cat) &&
+      (!q || a.n.toLowerCase().includes(q) || a.d.toLowerCase().includes(q))
+    );
+    if(items.length === 0) return '';
+    shown += items.length;
+    return `
+    <section class="section" id="cat-${cat.id}" style="--cat:${cat.color}">
+      <div class="section-head">
+        <span class="cat-dot"></span>
+        <h2>${esc(cat.name)}</h2>
+        <span class="en">${cat.en}</span>
+        <span class="count">${items.length} 款</span>
+      </div>
+      <p class="section-desc">${esc(cat.desc)}</p>
+      <div class="grid">
+        ${items.map(a => `
+        <a class="card" style="--cat:${cat.color}" href="${esc(a.u)}" target="_blank" rel="noopener" title="打开 ${esc(a.n)} 官网">
+          <div class="card-top">
+            <span class="icon" style="background:${a.ic}">${esc(a.t)}</span>
+            <span class="card-name">${esc(a.n)}
+              <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </div>
+          <p class="card-desc">${esc(a.d)}</p>
+          <span class="card-url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3.5 12h17M12 3.5c2.5 2.3 3.8 5.2 3.8 8.5s-1.3 6.2-3.8 8.5c-2.5-2.3-3.8-5.2-3.8-8.5s1.3-6.2 3.8-8.5z"/></svg>
+            ${esc(hostOf(a.u))}
+          </span>
+        </a>`).join('')}
+      </div>
+    </section>`;
+  }).join('');
+
+  contentEl.innerHTML = html ||
+    '<div class="empty"><strong>没有找到匹配的软件</strong>换个关键词试试，比如「笔记」「剪辑」「翻译」。</div>';
+
+  /* 统计数字 */
+  document.getElementById('statApps').textContent = APPS.length;
+  document.getElementById('statCats').textContent = CATS.length;
+}
+
+/* ================= 交互 ================= */
+navEl.addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if(!btn) return;
+  state.cat = btn.dataset.cat;
+  render();
+  const nav = document.querySelector('.catnav-wrap');
+  const top = nav.getBoundingClientRect().top + window.scrollY;
+  window.scrollTo({top: top - 1, behavior:'smooth'});
+});
+
+searchEl.addEventListener('input', () => {
+  state.query = searchEl.value;
+  if(state.cat !== 'all') state.cat = 'all'; /* 搜索时跨全部分类过滤 */
+  render();
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key === '/' && document.activeElement !== searchEl){
+    e.preventDefault();
+    searchEl.focus();
+  }
+  if(e.key === 'Escape' && document.activeElement === searchEl){
+    searchEl.blur();
+  }
+});
+
+/* 生成背景星点 */
+(function(){
+  const box = document.getElementById('stars');
+  if(!box) return;
+  const count = window.innerWidth < 640 ? 70 : 130;
+  const frag = document.createDocumentFragment();
+  for(let i = 0; i < count; i++){
+    const s = document.createElement('i');
+    s.className = 'star';
+    const size = (Math.random() * 1.8 + 0.6).toFixed(1);
+    s.style.cssText =
+      'left:' + (Math.random() * 100).toFixed(2) + '%;' +
+      'top:' + (Math.random() * 100).toFixed(2) + '%;' +
+      'width:' + size + 'px;height:' + size + 'px;' +
+      '--tw:' + (Math.random() * 4 + 2.5).toFixed(1) + 's;' +
+      'animation-delay:' + (Math.random() * 4).toFixed(1) + 's;';
+    frag.appendChild(s);
+  }
+  box.appendChild(frag);
+})();
+
+/* 色票装饰 */
+const sw = document.getElementById('swatches');
+sw.innerHTML = CATS.map(c => `<i style="background:${c.color}" title="${esc(c.name)}"></i>`).join('');
+
+/* 初始渲染 */
+render();
+</script>
 </body>
 </html>
