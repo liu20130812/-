@@ -94,9 +94,6 @@
     text-align:center;
     overflow:hidden;
   }
-  .hero-grid{
-    display:none;
-  }
   .hero-inner{
     position:relative;max-width:880px;margin:0 auto;
     animation:fadeUp .85s ease both;
@@ -171,6 +168,64 @@
     display:block;transition:transform .2s;
   }
   .swatches i:hover{transform:translateY(-3px) rotate(-6deg);}
+
+  /* ===== 公告栏 ===== */
+  .announce{
+    position:relative;z-index:1;
+    max-width:1200px;margin:0 auto;
+    padding:18px 20px 0;
+  }
+  .announce-inner{
+    position:relative;overflow:hidden;
+    display:flex;align-items:center;gap:16px;
+    background:rgba(13,20,40,.55);
+    border:1px solid rgba(88,140,255,.3);
+    border-radius:12px;
+    padding:14px 20px;
+    box-shadow:0 0 24px rgba(70,120,255,.14), inset 0 0 28px rgba(70,120,255,.06);
+  }
+  /* 顶部扫描光线 */
+  .announce-inner::after{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg, transparent, rgba(120,180,255,.9), transparent);
+    transform:translateX(-100%);
+    animation:scan 4.5s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes scan{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+  .announce .tag{
+    flex:none;display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:700;letter-spacing:.14em;
+    color:#BFE3FF;
+    border:1px solid rgba(88,140,255,.4);border-radius:6px;
+    padding:4px 11px;background:rgba(88,140,255,.14);
+  }
+  .announce .tag i{
+    width:7px;height:7px;border-radius:50%;
+    background:#6CF0C8;box-shadow:0 0 8px #6CF0C8;
+    animation:pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+  .announce .msg{
+    flex:1;min-width:0;
+    font-size:15px;color:var(--ink);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  @keyframes fadeMsg{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .announce .msg.fade{animation:fadeMsg .55s ease;}
+  .announce .seq{
+    flex:none;font-size:12.5px;letter-spacing:.12em;color:#5F8BD0;
+    font-family:var(--display);
+    border-left:1px solid rgba(88,140,255,.28);padding-left:16px;
+    white-space:nowrap;
+  }
+  .announce .dots{display:flex;justify-content:center;gap:7px;margin-top:11px;}
+  .announce .dots i{
+    width:6px;height:6px;border-radius:50%;
+    background:rgba(148,170,220,.35);
+    transition:background .3s, box-shadow .3s;
+  }
+  .announce .dots i.on{background:#6CF0C8;box-shadow:0 0 8px rgba(108,240,200,.85);}
 
   /* ===== Category nav ===== */
   .catnav-wrap{
@@ -339,6 +394,10 @@
     .icon{width:44px;height:44px;font-size:16px;border-radius:11px;}
     .section-head h2{font-size:24px;}
     .catnav button{min-height:44px;padding:7px 12px;font-size:13.5px;}
+    .announce{padding:14px 14px 0;}
+    .announce-inner{gap:10px;padding:11px 14px;}
+    .announce .msg{font-size:14px;}
+    .announce .seq{display:none;}
   }
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important;animation:none !important;}
@@ -358,9 +417,9 @@
 
 <header class="hero">
   <div class="hero-inner">
-    <span class="eyebrow">电脑软件收藏夹</span>
+    <span class="eyebrow">我的软件收藏夹</span>
     <h1>小刘网站集合<span class="dot">。</span></h1>
-    <p class="subtitle">把常用的软件官网都收进这一页，一站式找到你想要的软件</p>
+    <p class="subtitle">把常用的软件官网都收进这一页，点击卡片直达官方下载页——不再被搜索引擎塞满推广。</p>
     <div class="search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       <input id="searchInput" type="text" placeholder="搜索软件名称或用途，如：笔记、剪辑、翻译…" autocomplete="off">
@@ -375,6 +434,15 @@
   </div>
 </header>
 
+<div class="announce" role="region" aria-label="公告栏">
+  <div class="announce-inner">
+    <span class="tag"><i></i>公告</span>
+    <p class="msg" id="announceMsg"></p>
+    <span class="seq" id="announceSeq"></span>
+  </div>
+  <div class="dots" id="announceDots"></div>
+</div>
+
 <nav class="catnav-wrap" aria-label="分类导航">
   <div class="catnav" id="catNav"></div>
 </nav>
@@ -387,23 +455,30 @@
 </footer>
 
 <script>
+/* ================= 公告栏（在这里修改公告内容，改 text 即可，time 可写日期或留空） ================= */
+const ANNOUNCE = [
+  {text:'国庆快乐！本站暂无重要通知，各项服务稳定运行，小刘安全运营团队将持续维护网站安全。', time:'2026-09-30'},
+  {text:'本站为静态导航网站，不提供安装包下载，请前往各软件官网获取最新版本。', time:'2026-09-30'},
+  {text:'若发现某个官网链接失效，欢迎提醒我更新。', time:'2026-09-30'}
+];
+
 /* ================= 分类数据 ================= */
 const CATS = [
-  {id:'browser', name:'网页浏览器', en:'BROWSERS',    color:'#3B82F6', desc:'日常上网的窗口，选一款顺手的当家主力。'},
-  {id:'office',  name:'办公效率',   en:'OFFICE',      color:'#E4573D', desc:'文档、会议、协作，把工作流顺起来。'},
-  {id:'note',    name:'笔记与知识', en:'NOTES',       color:'#8B5CF6', desc:'记录、整理、沉淀，打造自己的第二大脑。'},
-  {id:'dev',     name:'开发编程',   en:'DEVELOPMENT', color:'#10B981', desc:'编辑器、版本控制与数据库，程序员的日常工具箱。'},
-  {id:'design',  name:'设计创意',   en:'DESIGN',      color:'#F59E0B', desc:'平面、UI、3D 与视频创作，让想法可视化。'},
-  {id:'media',   name:'影音娱乐',   en:'MEDIA',       color:'#EC4899', desc:'听歌、看片、剪视频，娱乐生产力两不误。'},
-  {id:'social',  name:'社交通讯',   en:'SOCIAL',      color:'#06B6D4', desc:'聊天与社区，保持和朋友、世界的连接。'},
-  {id:'system',  name:'系统工具',   en:'SYSTEM',      color:'#64748B', desc:'压缩、搜索、截图、监测，把电脑调教得趁手。'},
-  {id:'security',name:'安全防护',   en:'SECURITY',    color:'#EF4444', desc:'杀毒与防护，给电脑加一道安心锁。'},
-  {id:'cloud',   name:'网盘与下载', en:'STORAGE',     color:'#F97316', desc:'云存储与下载工具，数据备份、文件传输不发愁。'},
-  {id:'ai',      name:'人工智能',   en:'AI',          color:'#6366F1', desc:'对话、搜索、创作，AI 时代的效率外挂。'},
-  {id:'remote',  name:'远程连接',   en:'REMOTE',      color:'#14B8A6', desc:'远程办公、虚拟机，电脑不再有距离。'},
-  {id:'game',    name:'游戏平台',   en:'GAMING',      color:'#A855F7', desc:'Steam、Epic 与国服平台，游戏爱好者的入口。'},
-  {id:'edu',     name:'学习教育',   en:'LEARNING',    color:'#84CC16', desc:'在线课程与学习工具，终身学习者的加油站。'},
-  {id:'trans',   name:'翻译与词典', en:'LANGUAGE',    color:'#0EA5E9', desc:'翻译与查词，跨语言交流的桥梁。'}
+  {id:'browser', name:'网页浏览器', en:'BROWSERS',    color:'#4C8DFF', desc:'日常上网的窗口，选一款顺手的当家主力。'},
+  {id:'office',  name:'办公效率',   en:'OFFICE',      color:'#FF6B52', desc:'文档、会议、协作，把工作流顺起来。'},
+  {id:'note',    name:'笔记与知识', en:'NOTES',       color:'#9F6BFF', desc:'记录、整理、沉淀，打造自己的第二大脑。'},
+  {id:'dev',     name:'开发编程',   en:'DEVELOPMENT', color:'#22C98E', desc:'编辑器、版本控制与数据库，程序员的日常工具箱。'},
+  {id:'design',  name:'设计创意',   en:'DESIGN',      color:'#FFB02E', desc:'平面、UI、3D 与视频创作，让想法可视化。'},
+  {id:'media',   name:'影音娱乐',   en:'MEDIA',       color:'#FF5CA8', desc:'听歌、看片、剪视频，娱乐生产力两不误。'},
+  {id:'social',  name:'社交通讯',   en:'SOCIAL',      color:'#22C7E3', desc:'聊天与社区，保持和朋友、世界的连接。'},
+  {id:'system',  name:'系统工具',   en:'SYSTEM',      color:'#8A94A6', desc:'压缩、搜索、截图、监测，把电脑调教得趁手。'},
+  {id:'security',name:'安全防护',   en:'SECURITY',    color:'#FF5252', desc:'杀毒与防护，给电脑加一道安心锁。'},
+  {id:'cloud',   name:'网盘与下载', en:'STORAGE',     color:'#FF8A3D', desc:'云存储与下载工具，数据备份、文件传输不发愁。'},
+  {id:'ai',      name:'人工智能',   en:'AI',          color:'#7B7DFF', desc:'对话、搜索、创作，AI 时代的效率外挂。'},
+  {id:'remote',  name:'远程连接',   en:'REMOTE',      color:'#2BCDB8', desc:'远程办公、虚拟机，电脑不再有距离。'},
+  {id:'game',    name:'游戏平台',   en:'GAMING',      color:'#BC6FFF', desc:'Steam、Epic 与国服平台，游戏爱好者的入口。'},
+  {id:'edu',     name:'学习教育',   en:'LEARNING',    color:'#A3E635', desc:'在线课程与学习工具，终身学习者的加油站。'},
+  {id:'trans',   name:'翻译与词典', en:'LANGUAGE',    color:'#38BDF8', desc:'翻译与查词，跨语言交流的桥梁。'}
 ];
 
 /* ================= 软件数据（分类 + 名称 + 描述 + 官网 + 图标色 + 图标字） ================= */
@@ -697,6 +772,29 @@ document.addEventListener('keydown', e => {
     searchEl.blur();
   }
 });
+
+/* 公告栏轮播 */
+(function(){
+  const bar = document.querySelector('.announce');
+  const msg = document.getElementById('announceMsg');
+  const seq = document.getElementById('announceSeq');
+  const dots = document.getElementById('announceDots');
+  if(!bar || !msg || !ANNOUNCE.length){ if(bar) bar.style.display = 'none'; return; }
+  let idx = 0;
+  dots.innerHTML = ANNOUNCE.map((_, i) => '<i class="' + (i === 0 ? 'on' : '') + '"></i>').join('');
+  const dotEls = Array.prototype.slice.call(dots.children);
+  function show(i){
+    const a = ANNOUNCE[i];
+    msg.textContent = a.text;
+    msg.classList.remove('fade'); void msg.offsetWidth; msg.classList.add('fade');
+    seq.textContent = 'MSG-' + String(i + 1).padStart(2, '0') + (a.time ? ' · ' + a.time : '');
+    dotEls.forEach((d, k) => d.classList.toggle('on', k === i));
+  }
+  show(0);
+  if(ANNOUNCE.length > 1){
+    setInterval(function(){ idx = (idx + 1) % ANNOUNCE.length; show(idx); }, 6000);
+  }
+})();
 
 /* 生成背景星点 */
 (function(){
