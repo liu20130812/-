@@ -2,272 +2,606 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>电脑常用软件导航 · 一键直达官网</title>
-<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>味聚小馆 · 在线点餐</title>
 <style>
-    :root{
-        --ink:#1c2733;
-        --muted:#5c6b7a;
-        --line:#e3e9f0;
-        --bg:#f4f7fb;
-        --card:#ffffff;
-        --primary:#2f54d0;
-        --primary-ink:#1e3bb8;
-        --ok:#12a150;
-    }
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{
-        font-family:"Noto Sans SC",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-        background:var(--bg);
-        color:var(--ink);
-        line-height:1.5;
-    }
-    /* ===== Hero ===== */
-    .hero{
-        position:relative;
-        background:
-            linear-gradient(180deg,rgba(244,247,251,0) 0%,var(--bg) 78%),
-            url("https://aka.doubaocdn.com/s/lreIvAG1k2") center 22%/cover no-repeat;
-        padding:64px 20px 40px;
-        text-align:center;
-        overflow:hidden;
-    }
-    .hero-inner{max-width:880px;margin:0 auto;}
-    .hero .kicker{
-        display:inline-flex;align-items:center;gap:8px;
-        background:#fff;border:1px solid var(--line);border-radius:999px;
-        padding:7px 16px;font-size:14px;color:var(--primary-ink);font-weight:500;
-        box-shadow:0 2px 10px rgba(20,40,90,.06);
-    }
-    .hero h1{
-        font-size:clamp(30px,5vw,46px);font-weight:900;letter-spacing:.5px;
-        margin:18px 0 12px;color:#14223c;
-    }
-    .hero h1 span{color:var(--primary);}
-    .hero p.sub{font-size:clamp(15px,2vw,17px);color:var(--muted);max-width:620px;margin:0 auto;}
-    .hero .statbar{
-        display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:26px;
-    }
-    .hero .statbar span{
-        background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;
-        padding:8px 16px;font-size:14px;color:#33404f;box-shadow:0 2px 8px rgba(20,40,90,.05);
-    }
-    /* ===== 安全提示 ===== */
-    .safe-tip{
-        max-width:880px;margin:6px auto 0;padding:0 20px;
-    }
-    .safe-tip .box{
-        background:#eefaf3;border:1px solid #c8ecd7;border-radius:14px;
-        padding:14px 18px;display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:#0d5c33;
-    }
-    .safe-tip svg{flex:none;margin-top:2px;}
-    /* ===== 分类区 ===== */
-    .wrap{max-width:1040px;margin:36px auto 10px;padding:0 20px;}
-    .group{margin-bottom:34px;}
-    .group-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
-    .group-icon{
-        width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex:none;
-        color:#fff;
-    }
-    .group-head h2{font-size:20px;font-weight:700;color:#1a2a3f;}
-    .group-head .count{font-size:13px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:2px 10px;border-radius:999px;}
-    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
-    .card{
-        background:var(--card);border:1px solid var(--line);border-radius:16px;
-        padding:18px;display:flex;flex-direction:column;gap:14px;
-        transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
-        position:relative;
-    }
-    .card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(20,40,90,.10);border-color:#cdd9ec;}
-    .card-top{display:flex;align-items:center;gap:12px;}
-    .app-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:#fff;flex:none;}
-    .app-name{font-size:17px;font-weight:700;color:#16233a;line-height:1.2;}
-    .app-desc{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.4;}
-    .badge{
-        display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;
-        color:var(--ok);background:#eaf8f0;border:1px solid #c9ecd8;padding:2px 8px;border-radius:999px;flex:none;
-    }
-    .card .domain{
-        font-size:12px;color:#8a98a8;word-break:break-all;
-        background:#f5f8fc;border:1px solid var(--line);padding:6px 9px;border-radius:8px;
-    }
-    .btn-go{
-        margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;
-        background:var(--primary);color:#fff;border:none;border-radius:11px;
-        padding:12px 10px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;
-        transition:background .18s ease;
-    }
-    .btn-go:hover{background:var(--primary-ink);}
-    .btn-go svg{transition:transform .18s ease;}
-    .btn-go:hover svg{transform:translateX(3px);}
-    /* ===== 页脚 ===== */
-    footer{max-width:1040px;margin:44px auto 60px;padding:0 20px;text-align:center;color:#9aa7b6;font-size:13px;line-height:2;}
-    footer .foot-line{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;}
-    footer a{color:var(--primary-ink);text-decoration:none;}
-    footer a:hover{text-decoration:underline;}
-    @media (max-width:640px){
-        .hero{padding:44px 16px 28px;}
-        .cards{grid-template-columns:1fr 1fr;gap:11px;}
-        .card{padding:14px;gap:12px;}
-        .app-name{font-size:15.5px;}
-        .app-desc{font-size:12px;}
-    }
-    @media (max-width:400px){
-        .cards{grid-template-columns:1fr;}
-    }
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --main:#ff5b29; --main2:#ff8a3d; --gold:#ffb300;
+  --bg:#f5f6f8; --card:#fff; --txt:#1f2430; --sub:#8b93a3; --line:#eef0f4;
+}
+html,body{height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--txt);overflow:hidden;
+}
+button{font-family:inherit;border:none;background:none;cursor:pointer;color:inherit}
+
+/* ========== 布局 ========== */
+.app{display:flex;flex-direction:column;height:100vh;max-width:520px;margin:0 auto;background:var(--bg);position:relative;box-shadow:0 0 40px rgba(0,0,0,.08)}
+
+/* 顶部 */
+.topbar{
+  background:linear-gradient(135deg,var(--main),var(--main2));
+  padding:14px 16px 12px;color:#fff;flex-shrink:0;
+}
+.shop{display:flex;align-items:center;gap:10px}
+.shop .logo{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:24px}
+.shop h1{font-size:18px;font-weight:700;letter-spacing:.5px}
+.shop p{font-size:11.5px;opacity:.9;margin-top:2px}
+.search{
+  margin-top:12px;background:rgba(255,255,255,.95);border-radius:22px;
+  display:flex;align-items:center;gap:8px;padding:8px 14px;
+}
+.search input{flex:1;border:none;outline:none;background:none;font-size:14px;color:var(--txt)}
+.search input::placeholder{color:#b6bccb}
+.search .s-btn{font-size:13px;color:var(--main);font-weight:600}
+
+/* 主体：左分类 + 右菜单 */
+.main{flex:1;display:flex;overflow:hidden}
+.cats{width:88px;background:#f0f1f5;overflow-y:auto;flex-shrink:0}
+.cats::-webkit-scrollbar,.menu::-webkit-scrollbar,.cart-body::-webkit-scrollbar{width:0;height:0}
+.cat{
+  padding:15px 8px;font-size:13.5px;text-align:center;color:#5b6373;
+  position:relative;line-height:1.3;transition:.2s;
+}
+.cat .cnt{
+  position:absolute;top:8px;right:10px;min-width:16px;height:16px;border-radius:8px;
+  background:var(--main);color:#fff;font-size:10px;line-height:16px;padding:0 4px;font-weight:600;
+}
+.cat.on{background:#fff;color:var(--txt);font-weight:700}
+.cat.on::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:18px;background:var(--main);border-radius:0 3px 3px 0}
+
+.menu{flex:1;overflow-y:auto;padding:12px 12px 90px;background:#fff}
+.sec-title{font-size:12px;color:var(--sub);margin:14px 0 8px;font-weight:600;letter-spacing:1px}
+.sec-title:first-child{margin-top:0}
+.goods{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);position:relative}
+.thumb{
+  width:78px;height:78px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:38px;
+  background:linear-gradient(135deg,#ffe9d6,#ffd0b0);
+}
+.info{flex:1;min-width:0;display:flex;flex-direction:column}
+.name{font-size:15px;font-weight:600;line-height:1.3}
+.desc{font-size:11.5px;color:var(--sub);margin-top:4px;line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tag{display:inline-block;font-size:10px;color:var(--main);border:1px solid var(--main);
+  border-radius:3px;padding:0 4px;margin-top:5px;align-self:flex-start}
+.sales{font-size:11px;color:var(--sub);margin-top:5px}
+.bottom-row{margin-top:6px;display:flex;align-items:flex-end;justify-content:space-between}
+.price{color:var(--main);font-weight:700;font-size:18px}
+.price small{font-size:12px;font-weight:600}
+.price .old{color:var(--sub);font-size:11px;font-weight:400;text-decoration:line-through;margin-left:4px}
+
+/* 加减 */
+.step{display:flex;align-items:center;gap:8px}
+.step .minus,.step .plus{
+  width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:18px;line-height:1;
+}
+.step .plus{background:var(--main);color:#fff;box-shadow:0 2px 6px rgba(255,91,41,.35)}
+.step .minus{border:1px solid var(--main);color:var(--main)}
+.step .minus.hide,.step .num.hide{display:none}
+.step .num{font-size:14px;font-weight:600;min-width:14px;text-align:center}
+
+/* ========== 底部购物车栏 ========== */
+.bar{
+  position:absolute;left:0;right:0;bottom:0;height:64px;background:#2b3140;
+  display:flex;align-items:center;padding:0 12px;gap:12px;z-index:30;
+}
+.cart-icon{position:relative;width:52px;height:52px;border-radius:50%;background:var(--main);
+  display:flex;align-items:center;justify-content:center;font-size:26px;margin-top:-14px;
+  box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.cart-icon .badge{
+  position:absolute;top:-2px;right:-2px;min-width:19px;height:19px;border-radius:10px;background:#fff;
+  color:var(--main);font-size:11px;font-weight:700;line-height:19px;text-align:center;padding:0 5px;
+}
+.bar .sum{flex:1;color:#fff}
+.bar .sum .t1{font-size:12px;opacity:.7}
+.bar .sum .t2{font-size:20px;font-weight:700;color:var(--gold)}
+.bar .sum .t2 small{font-size:13px}
+.pay-btn{
+  background:linear-gradient(135deg,var(--main),var(--main2));color:#fff;font-size:15px;font-weight:700;
+  padding:11px 22px;border-radius:24px;
+}
+.pay-btn.dis{background:#5a6070;color:#a8aebd}
+
+/* ========== 遮罩 & 弹层 ========== */
+.mask{position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:40;opacity:0;pointer-events:none;transition:.25s}
+.mask.show{opacity:1;pointer-events:auto}
+
+.cart-pop{
+  position:absolute;left:0;right:0;bottom:64px;z-index:50;background:#fff;
+  border-radius:16px 16px 0 0;transform:translateY(110%);transition:.28s;
+  max-height:60%;display:flex;flex-direction:column;
+  visibility:hidden;pointer-events:none;
+}
+.cart-pop.show{transform:translateY(0);visibility:visible;pointer-events:auto}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line)}
+.cart-head h3{font-size:15px}
+.cart-head .clear{font-size:12.5px;color:var(--sub)}
+.cart-body{overflow-y:auto;padding:4px 16px}
+.ci{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.ci .emo{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#ffe9d6,#ffd0b0);
+  display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0}
+.ci .nm{flex:1;font-size:14px;font-weight:500}
+.ci .nm span{display:block;font-size:11px;color:var(--sub);font-weight:400;margin-top:2px}
+.ci .pr{color:var(--main);font-weight:700;font-size:15px;width:56px;text-align:right}
+.empty{padding:36px 0;text-align:center;color:var(--sub);font-size:13px}
+.empty div:first-child{font-size:40px;margin-bottom:8px;opacity:.5}
+
+/* 下单弹窗 */
+.order-pop{
+  position:absolute;left:0;right:0;bottom:0;z-index:50;background:#fff;border-radius:18px 18px 0 0;
+  transform:translateY(110%);transition:.28s;max-height:82%;display:flex;flex-direction:column;
+  visibility:hidden;pointer-events:none;
+}
+.order-pop.show{transform:translateY(0);visibility:visible;pointer-events:auto}
+.op-head{padding:16px;text-align:center;font-size:16px;font-weight:700;border-bottom:1px solid var(--line);position:relative}
+.op-head .x{position:absolute;right:14px;top:14px;font-size:20px;color:var(--sub)}
+.op-body{overflow-y:auto;padding:14px 16px}
+.field{margin-bottom:14px}
+.field label{font-size:13px;color:var(--sub);display:block;margin-bottom:7px}
+.field input,.field textarea{
+  width:100%;border:1px solid var(--line);background:#fafbfc;border-radius:10px;padding:10px 12px;
+  font-size:14px;outline:none;font-family:inherit;resize:none;
+}
+.field input:focus,.field textarea:focus{border-color:var(--main)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 13px;border:1px solid var(--line);border-radius:18px;font-size:13px;background:#fafbfc}
+.chip.on{border-color:var(--main);color:var(--main);background:#fff4ef;font-weight:600}
+.sum-list{border-top:1px dashed var(--line);padding-top:12px;margin-bottom:10px}
+.sum-item{display:flex;justify-content:space-between;font-size:13px;color:#5b6373;margin-bottom:7px}
+.sum-item b{color:var(--txt);font-weight:500}
+.total-line{display:flex;justify-content:space-between;align-items:baseline;padding-top:10px;border-top:1px solid var(--line)}
+.total-line .l{font-size:13px;color:var(--sub)}
+.total-line .r{color:var(--main);font-weight:700;font-size:22px}
+.op-foot{padding:12px 16px 18px;border-top:1px solid var(--line)}
+.submit{width:100%;background:linear-gradient(135deg,var(--main),var(--main2));color:#fff;
+  font-size:16px;font-weight:700;padding:14px;border-radius:26px}
+
+/* 下单成功 */
+.done{
+  position:absolute;inset:0;z-index:60;background:#fff;display:none;flex-direction:column;
+  align-items:center;padding:40px 24px;text-align:center;
+}
+.done.show{display:flex}
+.done .tick{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#2ecc71,#27ae60);
+  color:#fff;font-size:38px;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 20px rgba(46,204,113,.35);animation:pop .4s}
+@keyframes pop{0%{transform:scale(.3);opacity:0}70%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+.done h2{font-size:19px;margin-top:16px}
+.done .tip{font-size:13px;color:var(--sub);margin-top:6px}
+.receipt{width:100%;background:#fafbfc;border-radius:14px;padding:16px;margin-top:20px;text-align:left}
+.receipt .r-top{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);
+  padding-bottom:10px;border-bottom:1px dashed #e2e5ea}
+.receipt .rr{display:flex;justify-content:space-between;font-size:13px;margin-top:9px;color:#5b6373}
+.receipt .rr b{color:var(--txt);font-weight:500}
+.receipt .r-total{display:flex;justify-content:space-between;margin-top:12px;padding-top:12px;
+  border-top:1px solid #e2e5ea;font-weight:700;font-size:15px}
+.receipt .r-total .p{color:var(--main);font-size:19px}
+.done .btns{margin-top:auto;width:100%;display:flex;gap:10px;padding-top:20px}
+.done .btns button{flex:1;padding:13px;border-radius:24px;font-size:15px;font-weight:600}
+.b-again{border:1px solid var(--main);color:var(--main)}
+.b-home{background:linear-gradient(135deg,var(--main),var(--main2));color:#fff}
+
+/* toast */
+.toast{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:99;
+  background:rgba(0,0,0,.78);color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;
+  opacity:0;pointer-events:none;transition:.2s;
+}
+.toast.show{opacity:1}
+
+/* 飞入小球 */
+.ball{position:absolute;width:16px;height:16px;border-radius:50%;background:var(--main);z-index:70;
+  transition:transform .5s cubic-bezier(.5,-0.4,.9,.6),opacity .5s}
 </style>
 </head>
 <body>
+<div class="app">
 
-<!-- ===== Hero ===== -->
-<header class="hero">
-    <div class="hero-inner">
-        <span class="kicker">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
-            全部来自软件官方网站
-        </span>
-        <h1>常用软件 <span>官方导航</span></h1>
-        <p class="sub">一次收齐你常用的装机软件，点击按钮直达官方网站下载，远离第三方捆绑安装包。</p>
-        <div class="statbar">
-            <span>20+ 常用软件</span>
-            <span>10 个分类</span>
-            <span>一键直达官网</span>
-            <span>免费 · 纯净</span>
+  <!-- 顶部 -->
+  <div class="topbar">
+    <div class="shop">
+      <div class="logo">🍜</div>
+      <div>
+        <h1>味聚小馆 · 现炒热菜</h1>
+        <p>营业中 · 预计 25 分钟送达 · 起送 ¥20</p>
+      </div>
+    </div>
+    <div class="search">
+      <span>🔍</span>
+      <input id="kw" placeholder="搜索店内菜品，如「牛肉面」">
+      <button class="s-btn" onclick="doSearch()">搜索</button>
+    </div>
+  </div>
+
+  <!-- 主体 -->
+  <div class="main">
+    <div class="cats" id="cats"></div>
+    <div class="menu" id="menu"></div>
+  </div>
+
+  <!-- 底部栏 -->
+  <div class="bar">
+    <div class="cart-icon" onclick="openCart()">
+      🛒<span class="badge" id="badge" style="display:none">0</span>
+    </div>
+    <div class="sum">
+      <div class="t1" id="barTip">购物车是空的，快去挑选吧</div>
+      <div class="t2"><small>¥</small><span id="barTotal">0</span></div>
+    </div>
+    <button class="pay-btn dis" id="payBtn" onclick="openOrder()">去下单</button>
+  </div>
+
+  <!-- 遮罩 -->
+  <div class="mask" id="mask" onclick="closeAll()"></div>
+
+  <!-- 购物车 -->
+  <div class="cart-pop" id="cartPop">
+    <div class="cart-head">
+      <h3>已选菜品</h3>
+      <button class="clear" onclick="clearCart()">🗑 清空</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+  </div>
+
+  <!-- 下单 -->
+  <div class="order-pop" id="orderPop">
+    <div class="op-head">确认订单<span class="x" onclick="closeAll()">×</span></div>
+    <div class="op-body">
+      <div class="field">
+        <label>用餐方式</label>
+        <div class="chips" id="way">
+          <div class="chip on" data-v="堂食 · 大厅">堂食 · 大厅</div>
+          <div class="chip" data-v="堂食 · 包间">堂食 · 包间</div>
+          <div class="chip" data-v="到店自提">到店自提</div>
+          <div class="chip" data-v="外卖配送">外卖配送</div>
         </div>
+      </div>
+      <div class="field" id="addrField" style="display:none">
+        <label>配送地址</label>
+        <input id="addr" placeholder="请输入详细地址">
+      </div>
+      <div class="field">
+        <label>桌号 / 取餐号（选填）</label>
+        <input id="table" placeholder="如 A12">
+      </div>
+      <div class="field">
+        <label>口味备注</label>
+        <textarea id="note" rows="2" placeholder="如：辣度微辣、不要香菜"></textarea>
+      </div>
+      <div class="field">
+        <label>支付方式</label>
+        <div class="chips" id="payway">
+          <div class="chip on" data-v="微信支付">微信支付</div>
+          <div class="chip" data-v="支付宝">支付宝</div>
+          <div class="chip" data-v="货到付款">货到付款</div>
+        </div>
+      </div>
+      <div class="sum-list" id="sumList"></div>
+      <div class="total-line">
+        <div class="l">合计金额</div>
+        <div class="r"><small>¥</small><span id="orderTotal">0</span></div>
+      </div>
     </div>
-</header>
+    <div class="op-foot">
+      <button class="submit" onclick="submitOrder()">立即下单 · ¥<span id="btnTotal">0</span></button>
+    </div>
+  </div>
 
-<!-- ===== 安全提示 ===== -->
-<div class="safe-tip">
-    <div class="box">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-        <div><strong>安装提醒：</strong>请务必通过本页按钮跳转的官方网址下载安装，不要轻信搜索引擎里的仿冒站点与第三方下载站，避免误装捆绑软件或木马。</div>
+  <!-- 下单成功 -->
+  <div class="done" id="done">
+    <div class="tick">✓</div>
+    <h2>下单成功！</h2>
+    <div class="tip" id="doneTip">商家已收到订单，正在备餐</div>
+    <div class="receipt" id="receipt"></div>
+    <div class="btns">
+      <button class="b-again" onclick="again()">再来一单</button>
+      <button class="b-home" onclick="backHome()">返回菜单</button>
     </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
 </div>
 
-<main class="wrap" id="app"></main>
-
-<footer>
-    <div class="foot-line">
-        <span>本站为纯静态导航页，不含任何安装包</span>
-        <a href="#app">返回顶部</a>
-    </div>
-    <div>点击任意按钮将在新窗口打开对应软件官网</div>
-</footer>
-
 <script>
-// ===== 软件数据 =====
+/* ============ 菜品数据 ============ */
 const CATS = [
-  {key:"record", name:"录屏 · 直播", color:"#e8590c"},
-  {key:"secure", name:"安全防护",   color:"#0b7285"},
-  {key:"browser",name:"浏览器",     color:"#1c7ed6"},
-  {key:"office", name:"办公工具",   color:"#7048e8"},
-  {key:"chat",   name:"通讯 · 会议", color:"#2f9e44"},
-  {key:"archive",name:"压缩解压",   color:"#e67700"},
-  {key:"find",   name:"搜索 · 下载", color:"#e03131"},
-  {key:"media",  name:"影音播放",   color:"#d6336c"},
-  {key:"code",   name:"编辑器 · 编程", color:"#4263eb"},
-  {key:"cloud",  name:"网盘 · 存储", color:"#1098ad"}
+  {id:'hot', name:'🔥 热销'},
+  {id:'main', name:'🍚 招牌主食'},
+  {id:'snack', name:'🍗 香辣小吃'},
+  {id:'drink', name:'🥤 鲜榨饮品'},
+  {id:'sweet', name:'🍰 甜品冰点'},
+  {id:'combo', name:'🎁 超值套餐'}
+];
+const GOODS = [
+  // 热销
+  {id:101,name:'黑椒牛柳意面',price:38,old:48,cat:'hot',emo:'🍝',tag:'招牌',sales:1286,desc:'澳洲牛柳现煎，黑椒现磨，酱汁浓香裹满每一根面条'},
+  {id:102,name:'香辣鸡翅（6只）',price:22,old:28,cat:'hot',emo:'🍗',tag:'爆款',sales:2034,desc:'秘制腌料12小时，外酥里嫩，辣得过瘾'},
+  {id:103,name:'杨枝甘露',price:20,cat:'hot',emo:'🥭',tag:'好评99%',sales:1876,desc:'泰国金枕芒果 + 西柚粒 + 椰浆西米，冰镇现做'},
+  {id:104,name:'双人畅享套餐',price:88,old:126,cat:'hot',emo:'🎁',tag:'省38元',sales:642,desc:'2主食 + 2小吃 + 2饮品，两人才花一份钱'},
+  // 主食
+  {id:201,name:'日式豚骨拉面',price:42,cat:'main',emo:'🍜',sales:968,desc:'18小时熬制豚骨白汤，配溏心蛋与叉烧两片'},
+  {id:202,name:'麻辣香锅饭',price:32,cat:'main',emo:'🍲',sales:1122,desc:'十余种荤素自选，麻辣鲜香，米饭无限续'},
+  {id:203,name:'黄焖鸡米饭',price:28,cat:'main',emo:'🍛',sales:1543,desc:'散养土鸡慢炖，土豆香菇吸满汤汁，下饭神器'},
+  {id:204,name:'孜然羊肉盖饭',price:35,cat:'main',emo:'🥘',sales:735,desc:'内蒙羔羊后腿，大火爆炒孜然香，配时蔬'},
+  {id:205,name:'小龙虾拌面',price:45,cat:'main',emo:'🦐',tag:'季节限定',sales:489,desc:'4-6钱清水虾，蒜蓉小龙虾浇头铺满整碗'},
+  {id:206,name:'番茄肥牛饭',price:30,cat:'main',emo:'🍅',sales:812,desc:'手打番茄浓汤，肥牛卷现涮，酸甜开胃'},
+  // 小吃
+  {id:301,name:'黄金薯条',price:12,cat:'snack',emo:'🍟',sales:2541,desc:'比利时粗薯，双倍脆，配番茄酱'},
+  {id:302,name:'爆浆鸡排',price:18,cat:'snack',emo:'🍖',sales:1338,desc:'整块鸡胸去骨，芝士内芯一口爆浆'},
+  {id:303,name:'蒜香排骨',price:26,cat:'snack',emo:'🍖',sales:604,desc:'肋排小段，蒜香入骨，啃到停不下来'},
+  {id:304,name:'手打虾滑',price:30,cat:'snack',emo:'🍤',sales:421,desc:'青虾现打上劲，Q弹爽滑，配秘制蘸碟'},
+  {id:305,name:'椒盐蘑菇',price:16,cat:'snack',emo:'🍄',sales:377,desc:'平菇裹薄浆轻炸，椒盐提香，素食友好'},
+  // 饮品
+  {id:401,name:'鲜榨橙汁',price:15,cat:'drink',emo:'🍊',sales:920,desc:'4个赣南脐橙现榨，不加一滴水'},
+  {id:402,name:'冰镇柠檬茶',price:12,cat:'drink',emo:'🍋',sales:1673,desc:'锡兰红茶 + 香水柠檬手打出皮油，清爽解腻'},
+  {id:403,name:'桂花酒酿冰',price:18,cat:'drink',emo:'🌼',sales:288,desc:'古法酒酿打底，桂花蜜点缀，微醺清甜'},
+  {id:404,name:'可乐（罐）',price:6,cat:'drink',emo:'🥤',sales:3012,desc:'冰镇易拉罐，配餐经典'},
+  {id:405,name:'青提气泡水',price:16,cat:'drink',emo:'🍇',sales:355,desc:'阳光玫瑰青提果肉 + 气泡水，颜值拉满'},
+  // 甜品
+  {id:501,name:'提拉米苏',price:28,cat:'sweet',emo:'🍰',sales:566,desc:'马斯卡彭奶酪，手指饼干浸咖啡酒，微苦回甘'},
+  {id:502,name:'芒果班戟',price:22,cat:'sweet',emo:'🥞',sales:433,desc:'泰国芒果整块入馅，动物奶油不腻口'},
+  {id:503,name:'双皮奶',price:14,cat:'sweet',emo:'🍮',sales:702,desc:'水牛奶炖制，奶皮厚实，冷热可选'},
+  {id:504,name:'冰淇淋华夫',price:24,cat:'sweet',emo:'🧇',sales:389,desc:'现烤华夫饼 + 香草冰淇淋球，冷热交融'},
+  // 套餐
+  {id:601,name:'单人精致套餐',price:45,old:62,cat:'combo',emo:'🎁',sales:1104,desc:'1主食 + 1小吃 + 1饮品，一人食也丰盛'},
+  {id:602,name:'家庭欢聚套餐',price:158,old:228,cat:'combo',emo:'🎉',tag:'4-5人份',sales:271,desc:'4主食 + 4小吃 + 1大份汤 + 4饮品，省70元'},
+  {id:603,name:'下午茶套餐',price:36,old:52,cat:'combo',emo:'☕',sales:518,desc:'2甜品 + 2饮品，闺蜜小聚首选'}
 ];
 
-// 图标：几何简化符号（不仿制品牌 Logo）
-const ICONS = {
-  record:  '<path d="M6 4h12v10a6 6 0 0 1-6 6 6 6 0 0 1-6-6V4z"/><path d="M6 8h12"/>',          // 摄像机
-  secure:  '<path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/>', // 盾牌
-  browser: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/>', // 地球
-  office:  '<path d="M7 3h7l4 4v14H7V3z"/><path d="M14 3v4h4"/><path d="M10 12h6M10 16h6"/>',       // 文档
-  chat:    '<path d="M4 6h16v11H10l-6 4V6z"/><path d="M8 10h8M8 13h5"/>',                          // 聊天气泡
-  archive: '<path d="M4 8l8-4 8 4v9l-8 4-8-4V8z"/><path d="M4 8l8 4 8-4"/><path d="M12 12v9"/>',    // 压缩盒
-  find:    '<circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/><path d="M8 11h6"/>',              // 放大镜
-  media:   '<circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5-6-3.5z"/>',                    // 播放
-  code:    '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/><path d="M13 4l-2 16"/>',                        // 代码
-  cloud:   '<path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.5A4.5 4.5 0 0 1 17 18H7z"/><path d="M12 10v7M9 13l3-3 3 3"/>' // 云/上传
-};
+/* ============ 状态 ============ */
+let cart = {};          // {id: qty}
+let curCat = 'hot';
+let way = '堂食 · 大厅';
+let payway = '微信支付';
+const $ = id => document.getElementById(id);
+const money = n => (Math.round(n*100)/100);
 
-const SOFTWARES = [
-  // 录屏 · 直播
-  {cat:"record", name:"OBS Studio", desc:"免费开源录屏与直播推流", url:"https://obsproject.com/", domain:"obsproject.com"},
-  {cat:"record", name:"剪映专业版", desc:"字节跳动出品的视频剪辑软件",   url:"https://www.capcut.cn/", domain:"capcut.cn"},
-  // 安全防护
-  {cat:"secure", name:"火绒安全", desc:"轻巧干净的电脑防护软件",   url:"https://www.huorong.cn/", domain:"huorong.cn"},
-  // 浏览器
-  {cat:"browser",name:"Chrome 谷歌浏览器", desc:"谷歌官方浏览器", url:"https://www.google.com/chrome/", domain:"google.com/chrome"},
-  {cat:"browser",name:"Microsoft Edge", desc:"微软系统自带浏览器", url:"https://www.microsoft.com/edge", domain:"microsoft.com/edge"},
-  {cat:"browser",name:"Firefox 火狐", desc:"注重隐私的开源浏览器", url:"https://www.mozilla.org/zh-CN/firefox/", domain:"mozilla.org/firefox"},
-  // 办公工具
-  {cat:"office", name:"WPS Office", desc:"国产办公套件",         url:"https://www.wps.cn/", domain:"wps.cn"},
-  {cat:"office", name:"LibreOffice", desc:"免费开源办公套件",     url:"https://www.libreoffice.org/", domain:"libreoffice.org"},
-  {cat:"office", name:"Notion", desc:"笔记与协作工作台",          url:"https://www.notion.so/", domain:"notion.so"},
-  // 通讯 · 会议
-  {cat:"chat", name:"微信", desc:"日常通讯与社交",          url:"https://weixin.qq.com/", domain:"weixin.qq.com"},
-  {cat:"chat", name:"QQ", desc:"腾讯即时通讯",              url:"https://im.qq.com/", domain:"im.qq.com"},
-  {cat:"chat", name:"企业微信", desc:"企业办公协同",          url:"https://work.weixin.qq.com/", domain:"work.weixin.qq.com"},
-  {cat:"chat", name:"腾讯会议", desc:"视频会议与在线协作",     url:"https://meeting.tencent.com/", domain:"meeting.tencent.com"},
-  {cat:"chat", name:"钉钉", desc:"企业协同办公平台",         url:"https://www.dingtalk.com/", domain:"dingtalk.com"},
-  // 压缩解压
-  {cat:"archive", name:"7-Zip", desc:"免费高压缩比解压工具",  url:"https://www.7-zip.org/", domain:"7-zip.org"},
-  {cat:"archive", name:"Bandizip", desc:"轻量好用的压缩软件", url:"https://www.bandisoft.com/", domain:"bandisoft.com"},
-  // 搜索 · 下载
-  {cat:"find", name:"Everything", desc:"秒搜电脑文件的神器", url:"https://www.voidtools.com/", domain:"voidtools.com"},
-  {cat:"find", name:"迅雷", desc:"高速下载工具",           url:"https://www.xunlei.com/", domain:"xunlei.com"},
-  // 影音播放
-  {cat:"media", name:"PotPlayer", desc:"功能强大的视频播放器", url:"https://potplayer.daum.net/", domain:"potplayer.daum.net"},
-  {cat:"media", name:"VLC", desc:"全能免费开源播放器",       url:"https://www.videolan.org/vlc/", domain:"videolan.org/vlc"},
-  // 编辑器 · 编程
-  {cat:"code", name:"Notepad++", desc:"轻量文本代码编辑器",  url:"https://notepad-plus-plus.org/", domain:"notepad-plus-plus.org"},
-  {cat:"code", name:"Visual Studio Code", desc:"微软开源代码编辑器", url:"https://code.visualstudio.com/", domain:"code.visualstudio.com"},
-  // 网盘 · 存储
-  {cat:"cloud", name:"百度网盘", desc:"云存储与文件分享",    url:"https://pan.baidu.com/", domain:"pan.baidu.com"},
-];
-
-// ===== 渲染 =====
-const catMap = Object.fromEntries(CATS.map(c=>[c.key,c]));
-
-function render(){
-  const app = document.getElementById("app");
-  const html = CATS.map(cat=>{
-    const items = SOFTWARES.filter(s=>s.cat===cat.key);
-    if(!items.length) return "";
-    const icon = ICONS[cat.key];
-    const cards = items.map(s=>`
-      <div class="card">
-        <div class="card-top">
-          <div class="app-icon" style="background:${cat.color}">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${icon}</svg>
-          </div>
-          <div>
-            <div class="app-name">${s.name}</div>
-            <span class="badge">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-              官方
-            </span>
-          </div>
-        </div>
-        <div class="app-desc">${s.desc}</div>
-        <div class="domain">${s.domain}</div>
-        <a class="btn-go" href="${s.url}" target="_blank" rel="noopener noreferrer">
-          前往官网下载
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </div>
-    `).join("");
-    return `
-      <section class="group">
-        <div class="group-head">
-          <div class="group-icon" style="background:${cat.color}">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon}</svg>
-          </div>
-          <h2>${cat.name}</h2>
-          <span class="count">${items.length} 款</span>
-        </div>
-        <div class="cards">${cards}</div>
-      </section>
-    `;
-  }).join("");
-  app.innerHTML = html;
+/* ============ 渲染分类 ============ */
+function renderCats(){
+  $('cats').innerHTML = CATS.map(c=>`
+    <div class="cat ${c.id===curCat?'on':''}" data-c="${c.id}" onclick="switchCat('${c.id}')">
+      ${c.name}<span class="cnt" style="display:none"></span>
+    </div>`).join('');
+  updateCatBadge();
 }
-render();
+
+function updateCatBadge(){
+  document.querySelectorAll('.cat').forEach(el=>{
+    const cid = el.dataset.c;
+    let n = 0;
+    Object.keys(cart).forEach(id=>{
+      const g = GOODS.find(x=>x.id==id);
+      if(g && g.cat===cid) n += cart[id];
+    });
+    const b = el.querySelector('.cnt');
+    b.style.display = n? 'block':'none';
+    b.textContent = n;
+  });
+}
+
+/* ============ 渲染菜单 ============ */
+function renderMenu(list){
+  if(!list.length){
+    $('menu').innerHTML = '<div class="empty"><div>🍽</div>没有找到相关菜品，换个词试试</div>';
+    return;
+  }
+  let html = '', lastCat = '';
+  list.forEach(g=>{
+    if(g.cat !== lastCat){
+      lastCat = g.cat;
+      html += `<div class="sec-title">${(CATS.find(c=>c.id===g.cat)||{}).name||''}</div>`;
+    }
+    const q = cart[g.id] || 0;
+    html += `
+    <div class="goods">
+      <div class="thumb">${g.emo}</div>
+      <div class="info">
+        <div class="name">${g.name}</div>
+        <div class="desc">${g.desc}</div>
+        ${g.tag?`<span class="tag">${g.tag}</span>`:''}
+        <div class="sales">月售 ${g.sales}${g.old?` · 好评如潮`:''}</div>
+        <div class="bottom-row">
+          <div class="price"><small>¥</small>${g.price}${g.old?`<span class="old">¥${g.old}</span>`:''}</div>
+          <div class="step">
+            <div class="minus ${q?'':'hide'}" onclick="minus(${g.id},event)">−</div>
+            <div class="num ${q?'':'hide'}">${q}</div>
+            <div class="plus" onclick="plus(${g.id},event)">+</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  });
+  $('menu').innerHTML = html;
+}
+
+function showCat(cid){
+  curCat = cid;
+  renderCats();
+  renderMenu(GOODS.filter(g=>g.cat===cid));
+}
+
+function switchCat(cid){
+  showCat(cid);
+  $('menu').scrollTop = 0;
+}
+
+function doSearch(){
+  const kw = $('kw').value.trim();
+  if(!kw){ showCat('hot'); return; }
+  curCat = '';
+  renderCats();
+  renderMenu(GOODS.filter(g=>(g.name+g.desc).includes(kw)));
+}
+
+/* ============ 购物车操作 ============ */
+function plus(id, ev){
+  cart[id] = (cart[id]||0) + 1;
+  if(ev) fly(ev);
+  refresh();
+}
+function minus(id){
+  if(!cart[id]) return;
+  cart[id]--;
+  if(cart[id] <= 0) delete cart[id];
+  refresh();
+}
+function clearCart(){
+  if(!Object.keys(cart).length) return;
+  cart = {}; refresh(); closeAll(); toast('购物车已清空');
+}
+function qty(){ return Object.values(cart).reduce((a,b)=>a+b,0); }
+function total(){
+  let s = 0;
+  Object.keys(cart).forEach(id=>{
+    const g = GOODS.find(x=>x.id==id);
+    if(g) s += g.price * cart[id];
+  });
+  return money(s);
+}
+
+function refresh(){
+  const n = qty(), t = total();
+  const badge = $('badge');
+  badge.style.display = n? 'block':'none';
+  badge.textContent = n;
+  $('barTotal').textContent = t;
+  $('barTip').textContent = n? `已选 ${n} 件，另需配送费 ¥0` : '购物车是空的，快去挑选吧';
+  const btn = $('payBtn');
+  btn.classList.toggle('dis', n===0);
+  btn.textContent = n? (t>=20? '去下单' : `差 ¥${money(20-t)} 起送`) : '去下单';
+  renderCartPop();
+  updateCatBadge();
+  // 同步菜单上的数量
+  if(curCat) renderMenu(GOODS.filter(g=>g.cat===curCat));
+  else doSearch();
+}
+
+function renderCartPop(){
+  const ids = Object.keys(cart);
+  if(!ids.length){
+    $('cartBody').innerHTML = '<div class="empty"><div>🛒</div>还没有选择菜品哦</div>';
+    return;
+  }
+  $('cartBody').innerHTML = ids.map(id=>{
+    const g = GOODS.find(x=>x.id==id);
+    return `<div class="ci">
+      <div class="emo">${g.emo}</div>
+      <div class="nm">${g.name}<span>¥${g.price}</span></div>
+      <div class="step">
+        <div class="minus ${cart[id]?'':'hide'}" onclick="minus(${id})">−</div>
+        <div class="num">${cart[id]}</div>
+        <div class="plus" onclick="plus(${id})">+</div>
+      </div>
+      <div class="pr">¥${money(g.price*cart[id])}</div>
+    </div>`;
+  }).join('');
+  $('sumList').innerHTML = ids.map(id=>{
+    const g = GOODS.find(x=>x.id==id);
+    return `<div class="sum-item"><b>${g.name} × ${cart[id]}</b><span>¥${money(g.price*cart[id])}</span></div>`;
+  }).join('') + `<div class="sum-item"><b>配送费</b><span>¥0（满20免配送）</span></div>`;
+  $('orderTotal').textContent = total();
+  $('btnTotal').textContent = total();
+}
+
+/* ============ 弹层 ============ */
+function openCart(){
+  if(!qty()){ toast('请先选择菜品'); return; }
+  renderCartPop();
+  $('mask').classList.add('show');
+  $('cartPop').classList.add('show');
+}
+function openOrder(){
+  if(!qty()){ toast('请先选择菜品'); return; }
+  if(total() < 20){ toast('还差 ¥' + money(20-total()) + ' 起送哦'); return; }
+  renderCartPop();
+  $('mask').classList.add('show');
+  $('orderPop').classList.add('show');
+}
+function closeAll(){
+  $('mask').classList.remove('show');
+  $('cartPop').classList.remove('show');
+  $('orderPop').classList.remove('show');
+}
+
+/* ============ 选择 chips ============ */
+document.querySelectorAll('#way .chip').forEach(c=>{
+  c.onclick = ()=>{
+    document.querySelectorAll('#way .chip').forEach(x=>x.classList.remove('on'));
+    c.classList.add('on'); way = c.dataset.v;
+    $('addrField').style.display = way==='外卖配送' ? 'block':'none';
+  };
+});
+document.querySelectorAll('#payway .chip').forEach(c=>{
+  c.onclick = ()=>{
+    document.querySelectorAll('#payway .chip').forEach(x=>x.classList.remove('on'));
+    c.classList.add('on'); payway = c.dataset.v;
+  };
+});
+
+/* ============ 下单 ============ */
+function submitOrder(){
+  if(!qty()){ toast('购物车是空的'); return; }
+  if(way==='外卖配送' && !$('addr').value.trim()){ toast('请填写配送地址'); return; }
+  const no = 'WJ' + Date.now().toString().slice(-8);
+  const items = Object.keys(cart).map(id=>{
+    const g = GOODS.find(x=>x.id==id);
+    return `<div class="rr"><b>${g.emo} ${g.name} × ${cart[id]}</b><span>¥${money(g.price*cart[id])}</span></div>`;
+  }).join('');
+  $('receipt').innerHTML = `
+    <div class="r-top"><span>订单号 ${no}</span><span>${new Date().toLocaleString('zh-CN',{hour12:false})}</span></div>
+    ${items}
+    <div class="rr"><b>用餐方式</b><span>${way}${way==='外卖配送'?'（'+$('addr').value.trim()+'）':''}</span></div>
+    <div class="rr"><b>桌号 / 取餐号</b><span>${$('table').value.trim() || '到店安排'}</span></div>
+    <div class="rr"><b>备注</b><span>${$('note').value.trim() || '无'}</span></div>
+    <div class="rr"><b>支付方式</b><span>${payway}</span></div>
+    <div class="r-total"><span>实付金额</span><span class="p">¥${total()}</span></div>`;
+  $('doneTip').textContent = way==='外卖配送' ? '骑手将在 25 分钟内送达' : '已通知后厨备餐，请留意叫号';
+  closeAll();
+  $('done').classList.add('show');
+}
+function again(){
+  $('done').classList.remove('show');
+  cart = {}; refresh();
+  toast('已清空购物车，可重新点单');
+}
+function backHome(){
+  $('done').classList.remove('show');
+  cart = {}; refresh();
+  $('kw').value = '';
+  showCat('hot');
+}
+
+/* ============ 小工具 ============ */
+let toastTimer;
+function toast(msg){
+  const t = $('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 1500);
+}
+function fly(ev){
+  const app = document.querySelector('.app');
+  const rect = app.getBoundingClientRect();
+  const b = document.createElement('div');
+  b.className = 'ball';
+  const x = ev.clientX - rect.left, y = ev.clientY - rect.top;
+  b.style.left = x+'px'; b.style.top = y+'px';
+  app.appendChild(b);
+  const tx = 40 - x, ty = rect.height - 60 - y;
+  requestAnimationFrame(()=>{
+    b.style.transform = `translate(${tx}px,${ty}px) scale(.4)`;
+    b.style.opacity = '0';
+  });
+  setTimeout(()=>b.remove(),520);
+}
+
+/* 初始化 */
+showCat('hot');
+refresh();
 </script>
 </body>
 </html>
